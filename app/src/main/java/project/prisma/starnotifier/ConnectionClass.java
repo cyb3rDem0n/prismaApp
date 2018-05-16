@@ -17,9 +17,9 @@ import java.sql.SQLException;
 public class ConnectionClass {
         String classs = "com.mysql.jdbc.Driver";
 
-        String url = "jdbc:mysql://192.168.1.139/starnotifierdb";
-        String un = "user0";
-        String password = "1234567890Qwerty!";
+        String url = "jdbc:mysql://localhost:3306/starnotifierdb";
+        String un = "root";
+        String password = "toor";
 
 
 

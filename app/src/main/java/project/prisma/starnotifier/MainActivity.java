@@ -5,7 +5,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
@@ -16,56 +15,76 @@ import java.sql.Statement;
 
 import static android.support.v4.app.NotificationCompat.*;
 
-
+// Todo: the connection JDBC class should return with a main method the data that we need...
 public class MainActivity extends AppCompatActivity {
 
-    ConnectionClass dbTest = new ConnectionClass();
-    String output;
-    ConnectionClass connectionClass;
+    //ConnectionClass dbTest = new ConnectionClass();
+    String eventData;
+    int eventId;
+    //ConnectionClass connectionClass;
+    TextView textView, textView0;  // textView0 is the textView inside the ScrollView - textView is the number of events shown
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final TextView textView = findViewById(R.id.showevent);
-        connectionClass = new ConnectionClass();
+        textView = findViewById(R.id.showevent);
+        textView0 = findViewById(R.id.ev0);
 
-        try {
-            Connection con = connectionClass.CONN();
-            if (con == null) {
-                String z = "Please check your internet connection";
-            } else {
+        //connectionClass = new ConnectionClass();
 
-                String query = "select * from evento";
-                Statement statement = con.createStatement();
+        try
+        {
+            ConnectionJDBC connectionJDBC = new ConnectionJDBC();
 
-                ResultSet resultSet = statement.executeQuery(query);
-                while (resultSet.next())
+            Connection conn = connectionJDBC.getMySqlConnection();
+            String query = "select * from evento";
+            Statement statement = conn.createStatement();
 
-                {
-                    output= resultSet.getString(2);
-                    textView.append("DATE: "+output + "\n");
-                }
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next())
+
+            {
+                eventId = resultSet.getInt(1);
+                eventData = resultSet.getString(2);
+
+                System.out.print("--------- "+ eventData + " -----------");
+                System.out.print("--------- "+ eventId + " -----------");
+
+                textView0.setText(eventData);
+
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+
+            /* You can use the connection object to do any insert, delete, query or update action to the mysql server.*/
+
+            /* Do not forget to close the database connection after use, this can release the database connection.*/
+            conn.close();
+        }catch(Exception ex)
+        {
+            ex.printStackTrace();
         }
     }
 
 
-    public void notification(View view)
-    {
-        addNotification();
+    /*
+    This function when executed by the onclick, perform a SELECT query on db and make two operation:
+    1) Append the the data obtained from db in a textView inside a scrollList
+    2) Put +1 in the main textView of the main activity xml
+     */
+    public void updateStatus(View v){
+            textView.setText(eventId);
+
     }
 
-    private void addNotification()
+    private void addNotification(String content)
     {
+        content = eventData;
         //Todo: On notification click it should show the details activity. By cyberdemon
         Builder builder =
                 new Builder(this)
                         .setSmallIcon(R.drawable.message)
-                        .setContentTitle("Unread Message")   //this is the title of notification
-                        .setContentText("You have an unread message.");   //this is the message showed in notification
+                        .setContentTitle("New Event Happen")   //this is the title of notification
+                        .setContentText(content);   //this is the message showed in notification
 
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
