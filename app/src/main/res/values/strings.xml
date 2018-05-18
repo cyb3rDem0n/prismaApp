@@ -1,10 +1,5 @@
 <resources>
     <string name="app_name">StarNotifier</string>
-    <string name="button_update">check</string>
-    <string name="new_event_counter">2</string>
-    <string name="events_list">num event</string>
-    <string name="notification_message_text">You have a new unread message....</string>
-    <string name="new_event">this is a new event</string>
     <string name="appbar_scrolling_view_behavior" />
     <string name="event_details">This is the Event Details Activity</string>
     <string name="editText_insert_station">Enter Station Name...</string>
