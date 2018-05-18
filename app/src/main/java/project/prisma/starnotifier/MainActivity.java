@@ -2,96 +2,90 @@ package project.prisma.starnotifier;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.support.v4.app.NotificationCompat.*;
 
 // Todo: the connection JDBC class should return with a main method the data that we need...
 public class MainActivity extends AppCompatActivity {
-
-    //ConnectionClass dbTest = new ConnectionClass();
-    String eventData;
-    int eventId;
-    //ConnectionClass connectionClass;
-    TextView textView, textView0;  // textView0 is the textView inside the ScrollView - textView is the number of events shown
+    String url = "http://testmyapp.altervista.org/insert.php";
+    String item_name;
+    EditText item_et;
+    ProgressDialog PD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = findViewById(R.id.showevent);
-        textView0 = findViewById(R.id.ev0);
+        initViews();
+    }
 
-        //connectionClass = new ConnectionClass();
+    void initViews() {
+        item_et = (EditText) findViewById(R.id.item_et_id);
 
-        try
-        {
-            ConnectionJDBC connectionJDBC = new ConnectionJDBC();
+        PD = new ProgressDialog(this);
+        PD.setMessage("Loading.....");
+        PD.setCancelable(false);
+    }
 
-            Connection conn = connectionJDBC.getMySqlConnection();
-            String query = "select * from evento";
-            Statement statement = conn.createStatement();
 
-            ResultSet resultSet = statement.executeQuery(query);
-            while (resultSet.next())
+    public void insert(View v) {
 
-            {
-                eventId = resultSet.getInt(1);
-                eventData = resultSet.getString(2);
+        PD.show();
+        item_name = item_et.getText().toString();
 
-                System.out.print("--------- "+ eventData + " -----------");
-                System.out.print("--------- "+ eventId + " -----------");
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        PD.dismiss();
+                        item_et.setText("");
+                        Toast.makeText(getApplicationContext(),
+                                "Data Inserted Successfully",
+                                Toast.LENGTH_SHORT).show();
 
-                textView0.setText(eventData);
-
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                PD.dismiss();
+                Toast.makeText(getApplicationContext(),
+                        "failed to insert", Toast.LENGTH_SHORT).show();
             }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("item_name", item_name);
+                return params;
+            }
+        };
 
-            /* You can use the connection object to do any insert, delete, query or update action to the mysql server.*/
-
-            /* Do not forget to close the database connection after use, this can release the database connection.*/
-            conn.close();
-        }catch(Exception ex)
-        {
-            ex.printStackTrace();
-        }
+        // Adding request to request queue
+        MyApplication.getInstance().addToReqQueue(postRequest);
     }
 
-
-    /*
-    This function when executed by the onclick, perform a SELECT query on db and make two operation:
-    1) Append the the data obtained from db in a textView inside a scrollList
-    2) Put +1 in the main textView of the main activity xml
-     */
-    public void updateStatus(View v){
-            textView.setText(eventId);
-
-    }
-
-    private void addNotification(String content)
-    {
-        content = eventData;
-        //Todo: On notification click it should show the details activity. By cyberdemon
-        Builder builder =
-                new Builder(this)
-                        .setSmallIcon(R.drawable.message)
-                        .setContentTitle("New Event Happen")   //this is the title of notification
-                        .setContentText(content);   //this is the message showed in notification
-
-        Intent intent = new Intent(this, MainActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setContentIntent(contentIntent);
-
-        // Add as notification
-        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.notify(0, builder.build());
+    public void read(View v) {
+        Intent read_intent = new Intent(MainActivity.this, ReadData.class);
+        startActivity(read_intent);
     }
 }
