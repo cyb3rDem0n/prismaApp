@@ -1,5 +1,6 @@
 package project.prisma.starnotifier;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -29,7 +30,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ReadData extends AppCompatActivity {
+public class ReadData extends Activity {
 
     String url = "http://testmyapp.altervista.org/read.php";
     ArrayList<HashMap<String, String>> Item_List;
@@ -77,6 +78,7 @@ public class ReadData extends AppCompatActivity {
                                             jobj.getString(ITEM_STATION));
 
                                     Item_List.add(item);
+
 
                                 } // for loop ends
 

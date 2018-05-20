@@ -1,5 +1,6 @@
 package project.prisma.starnotifier;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 // Todo: the connection JDBC class should return with a main method the data that we need...
-public class MainActivity extends AppCompatActivity {
+public class  MainActivity extends Activity {
     String url = "http://testmyapp.altervista.org/insert.php";
     String item_name;
     EditText item_et;

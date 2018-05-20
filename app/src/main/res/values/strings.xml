@@ -1,6 +1,14 @@
 <resources>
-    <string name="app_name">StarNotifier</string>
+    <string name="app_name">Star Notifier</string>
     <string name="appbar_scrolling_view_behavior" />
-    <string name="event_details">This is the Event Details Activity</string>
+    <string name="event_details">Event X</string>
     <string name="editText_insert_station">Enter Station Name...</string>
+    <string name="content_description">Logo Prisma Project</string>
+    <string name="title">Star Notifier</string>
+    <string name="title_inside">Lorem ipsum dolor sit amet</string>
+
+    <string name="button_insert">Insert</string>
+    <string name="num_event">3 new events...</string>
+    <string name="description_meteor">TODO</string>
+    <string name="contnent_skycam_image">skycam image</string>
 </resources>
