@@ -1,79 +1,52 @@
+/*
+ *  Created by cyb3rDem0n (Giuseppe D'Agostino) on 01/06/18 15.26
+ *  Copyright (c) 2018 . All rights reserved.
+ *  Email dagostinogiuseppe@outlook.com
+ *  Last modified 01/06/18 15.25
+ */
+
 package project.prisma.starnotifier;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-
-import java.util.HashMap;
-import java.util.Map;
-
-// Todo: the connection JDBC class should return with a main method the data that we need...
 public class  MainActivity extends Activity {
-    String url = "http://testmyapp.altervista.org/insert.php";
-    String item_name;
-    EditText item_et;
-    ProgressDialog PD;
+
+    private static final String DATABASE_NAME = "userdata_db";
+    private DataBase dataBase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initViews();
-    }
 
-    void initViews() {
-        item_et = (EditText) findViewById(R.id.item_et_id);
+        dataBase = Room.databaseBuilder(getApplicationContext(), DataBase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
 
-        PD = new ProgressDialog(this);
-        PD.setMessage("Loading.....");
-        PD.setCancelable(false);
-    }
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                UserData userData = new UserData();
+//                userData.setUserId(99);
+//                userData.setUsername("appUsername");
+//                userData.setPassword("appUserPassword");
+//
+//                dataBase.daoAccess () . insertOnlySingleUserData (userData);
+//            }
+//        }) .start();
 
 
-    public void insert(View v) {
-
-        PD.show();
-        item_name = item_et.getText().toString();
-
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        PD.dismiss();
-                        item_et.setText("");
-                        Toast.makeText(getApplicationContext(),
-                                "Data Inserted Successfully",
-                                Toast.LENGTH_SHORT).show();
-
-                    }
-                }, new Response.ErrorListener() {
+        new Thread(new Runnable() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                PD.dismiss();
-                Toast.makeText(getApplicationContext(),
-                        "failed to insert", Toast.LENGTH_SHORT).show();
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("item_name", item_name);
-                return params;
-            }
-        };
+            public void run() {
+                UserData userData_ = dataBase.daoAccess () . fetchOneUserDatabyUserId (99);
+                System.out.print("--------------->>> "+ userData_.getUsername() + " <<<------------");
 
-        // Adding request to request queue
-        MyApplication.getInstance().addToReqQueue(postRequest);
+            }
+        }) .start();
     }
 
     public void read(View v) {

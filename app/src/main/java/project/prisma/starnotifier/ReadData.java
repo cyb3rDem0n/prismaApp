@@ -1,3 +1,10 @@
+/*
+ *  Created by cyb3rDem0n (Giuseppe D'Agostino) on 01/06/18 15.26
+ *  Copyright (c) 2018 . All rights reserved.
+ *  Email dagostinogiuseppe@outlook.com
+ *  Last modified 01/06/18 15.25
+ */
+
 package project.prisma.starnotifier;
 
 import android.app.Activity;
@@ -6,6 +13,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Build;
@@ -42,6 +50,8 @@ public class ReadData extends Activity {
     // JSON Node names
     public static final String ITEM_ID = "id";
     public static final String ITEM_STATION = "station";
+
+    private NotificationManager notifManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,6 +150,74 @@ public class ReadData extends Activity {
                 .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(add_intent);
     }
+
+
+    // Check android version and produce a notification with a simple message using
+    //  different libs if we're on Oreo device.
+    public void createNotification(String aMessage) {
+        final int NOTIFY_ID = 1002;
+
+        // There are hardcoding only for show it's just strings
+        String name = "my_package_channel";
+        String id = "my_package_channel_1"; // The user-visible name of the channel.
+        String description = "my_package_first_channel"; // The user-visible description of the channel.
+
+        Intent intent;
+        PendingIntent pendingIntent;
+        NotificationCompat.Builder builder;
+
+        if (notifManager == null) {
+            notifManager =
+                    (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel mChannel = notifManager.getNotificationChannel(id);
+            if (mChannel == null) {
+                mChannel = new NotificationChannel(id, name, importance);
+                mChannel.setDescription(description);
+                mChannel.enableVibration(true);
+                mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+                notifManager.createNotificationChannel(mChannel);
+            }
+            builder = new NotificationCompat.Builder(this, id);
+
+            intent = new Intent(this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+
+            builder.setContentTitle(aMessage)  // required
+                    .setSmallIcon(android.R.drawable.ic_popup_reminder) // required
+                    .setContentText(this.getString(R.string.app_name))  // required
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .setAutoCancel(true)
+                    .setContentIntent(pendingIntent)
+                    .setTicker(aMessage)
+                    .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+        } else {
+
+            builder = new NotificationCompat.Builder(this);
+
+            intent = new Intent(this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+
+            builder.setContentTitle(aMessage)                           // required
+                    .setSmallIcon(android.R.drawable.ic_popup_reminder) // required
+                    .setContentText(this.getString(R.string.app_name))  // required
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .setAutoCancel(true)
+                    .setContentIntent(pendingIntent)
+                    .setTicker(aMessage)
+                    .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400})
+                    .setPriority(Notification.PRIORITY_HIGH);
+        } // else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+        Notification notification = builder.build();
+        notifManager.notify(NOTIFY_ID, notification);
+    }
+
 }
 
 
