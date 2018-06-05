@@ -19,6 +19,7 @@ public class UserData {
     private String username;
     private String password;
     private int eventsData;
+    private long timestamp;
 
     @NonNull
     public int getUserId() {
@@ -51,5 +52,13 @@ public class UserData {
 
     public void setEventsData(int eventsData) {
         this.eventsData = eventsData;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 }

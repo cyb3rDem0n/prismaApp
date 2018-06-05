@@ -14,39 +14,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-public class  MainActivity extends Activity {
-
-    private static final String DATABASE_NAME = "userdata_db";
-    private DataBase dataBase;
-
+// this class is here only to shw the initial layout
+public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        dataBase = Room.databaseBuilder(getApplicationContext(), DataBase.class, DATABASE_NAME).fallbackToDestructiveMigration().build();
-
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                UserData userData = new UserData();
-//                userData.setUserId(99);
-//                userData.setUsername("appUsername");
-//                userData.setPassword("appUserPassword");
-//
-//                dataBase.daoAccess () . insertOnlySingleUserData (userData);
-//            }
-//        }) .start();
-
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                UserData userData_ = dataBase.daoAccess () . fetchOneUserDatabyUserId (99);
-                System.out.print("--------------->>> "+ userData_.getUsername() + " <<<------------");
-
-            }
-        }) .start();
     }
 
     public void read(View v) {

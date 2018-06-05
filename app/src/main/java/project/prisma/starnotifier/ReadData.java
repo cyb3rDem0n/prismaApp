@@ -13,28 +13,28 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.android.volley.Request.Method;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -44,89 +44,135 @@ public class ReadData extends Activity {
     ArrayList<HashMap<String, String>> Item_List;
     ProgressDialog PD;
     ListAdapter adapter;
-    String val_norify;
     ListView listview = null;
+    ArrayList<HashMap<String, Integer>> Initial_Item_Num;
+    TextView newEvent;
+    ImageButton updateButton;
+    String infoTextView = "new events";
 
     // JSON Node names
     public static final String ITEM_ID = "id";
     public static final String ITEM_STATION = "station";
+    public static final String ITEM_TIMESTAMP = "timestamp";
 
+    private long actualTimestamp = System.currentTimeMillis()/1000;
+    private long lastTimestamp;
+    private boolean check4NewEvent = false;
+
+    // NOTIFICATION
     private NotificationManager notifManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.read);
 
-        listview = (ListView) findViewById(R.id.listview_01);
-        Item_List = new ArrayList<HashMap<String, String>>();
+        Item_List = new ArrayList<>();
+        Initial_Item_Num = new ArrayList<>();
 
+        listview = findViewById(R.id.listview_01);
+        newEvent = findViewById(R.id.new_event);
+        updateButton = findViewById(R.id.update);
+
+
+        // query remote DB
         ReadDataFromDB();
+
+        // maybe we have another row? // this is java 8
+        if (lastTimestamp > actualTimestamp) check4NewEvent = true;
+        else check4NewEvent = false;
+
+        // check if events counted and saved in ROM DB are >=< versus remote DB
+        updateButton.setOnClickListener(v -> {
+            if(check4NewEvent)
+                createNotification("new event" + " ACTUAL: " + actualTimestamp + " LAST:" + lastTimestamp);
+            else
+                createNotification("UPDATED" + " ACTUAL: " + actualTimestamp + " LAST:" + lastTimestamp);
+            });
     }
-    private void ReadDataFromDB() {
+
+    // ITA // Recupero il numero di righe appena avvio l'app
+    protected int counter() {
+        int initial_rows_numb = 0;
+        JsonObjectRequest jreq = new JsonObjectRequest(Method.GET, url, response -> {
+            try {
+                int success = response.getInt("success");
+                if (success == 1) {
+                    JSONArray ja = response.getJSONArray("my_testmyapp");
+                    HashMap<String, Integer> item = new HashMap<>();
+
+                    item.put("ROWS_NUMBER", ja.length());
+                    Initial_Item_Num.add(item);
+                } // if ends
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }, error -> newEvent.setText("error - cant retrieve data"));
+
+        // Adding request to request queue
+        MyApplication.getInstance().addToReqQueue(jreq);
+
+        for(int k = 0; k < Initial_Item_Num.size(); k ++)
+            initial_rows_numb = Initial_Item_Num.get(k).get("ROWS_NUMBER");
+
+        return initial_rows_numb;
+    }
+
+    private void ReadDataFromDB()  {
         PD = new ProgressDialog(this);
         PD.setMessage("Loading.....");
         PD.show();
 
-        JsonObjectRequest jreq = new JsonObjectRequest(Method.GET, url, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jreq = new JsonObjectRequest(Method.GET, url, response -> {
+            try {
+                int success = response.getInt("success");
 
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            int success = response.getInt("success");
+                if (success == 1) {
+                    JSONArray ja = response.getJSONArray("my_testmyapp");
 
-                            if (success == 1) {
-                                JSONArray ja = response.getJSONArray("my_testmyapp");
+                    for (int i = 0; i < ja.length(); i++) {
 
-                                for (int i = 0; i < ja.length(); i++) {
+                        JSONObject jobj = ja.getJSONObject(i);
 
-                                    JSONObject jobj = ja.getJSONObject(i);
-                                    HashMap<String, String> item = new HashMap<String, String>();
-                                    item.put(ITEM_ID, jobj.getString(ITEM_ID));
-                                    item.put(ITEM_STATION,
-                                            jobj.getString(ITEM_STATION));
+                        HashMap<String, String> item = new HashMap<>();
+                        item.put(ITEM_ID, jobj.getString(ITEM_ID));
+                        item.put(ITEM_STATION, jobj.getString(ITEM_STATION));
 
-                                    Item_List.add(item);
+                        lastTimestamp = jobj.getLong(ITEM_TIMESTAMP);
 
+                        Item_List.add(item);
 
-                                } // for loop ends
+                    } // for loop ends
 
-                                String[] from = {ITEM_ID, ITEM_STATION};
-                                int[] to = {R.id.item_id, R.id.item_station};
+                    String[] from = {ITEM_ID, ITEM_STATION};
+                    int[] to = {R.id.item_id, R.id.item_station};
 
-                                adapter = new SimpleAdapter(
-                                        getApplicationContext(), Item_List,
-                                        R.layout.list_items, from, to);
+                    adapter = new SimpleAdapter(
+                            getApplicationContext(), Item_List,
+                            R.layout.list_items, from, to);
 
-                                listview.setAdapter(adapter);
+                    listview.setAdapter(adapter);
 
-                                listview.setOnItemClickListener(new ListitemClickListener());
+                    listview.setOnItemClickListener(new ListitemClickListener());
 
-                                PD.dismiss();
+                    PD.dismiss();
 
-                            } // if ends
+                } // if ends
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                PD.dismiss();
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        });
+
+        }, error -> PD.dismiss());
 
         // Adding request to request queue
         MyApplication.getInstance().addToReqQueue(jreq);
 
     }
 
-
-    //On List Item Click move to UpdateDelete Activity
+    //On List Item Click move to Details Activity
     class ListitemClickListener implements ListView.OnItemClickListener {
 
         @Override
@@ -143,14 +189,6 @@ public class ReadData extends Activity {
         }
 
     }
-
-    public void addData(View view) {
-
-        Intent add_intent = new Intent(ReadData.this, MainActivity.class)
-                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(add_intent);
-    }
-
 
     // Check android version and produce a notification with a simple message using
     //  different libs if we're on Oreo device.
@@ -217,6 +255,8 @@ public class ReadData extends Activity {
         Notification notification = builder.build();
         notifManager.notify(NOTIFY_ID, notification);
     }
+
+
 
 }
 
