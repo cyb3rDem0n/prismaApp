@@ -19,7 +19,7 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
-public class CustomRequest extends Request<JSONObject>{
+public class CustomRequest extends Request<JSONObject> {
     private Response.Listener<JSONObject> listener;
     private Map<String, String> params;
 
@@ -40,7 +40,8 @@ public class CustomRequest extends Request<JSONObject>{
     @Override
     protected Map<String, String> getParams() throws com.android.volley.AuthFailureError {
         return params;
-    };
+    }
+
 
     @Override
     protected void deliverResponse(JSONObject response) {

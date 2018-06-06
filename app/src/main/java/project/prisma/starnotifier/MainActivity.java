@@ -8,22 +8,28 @@
 package project.prisma.starnotifier;
 
 import android.app.Activity;
-import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
+import android.os.Handler;
 
-// this class is here only to shw the initial layout
+// this class has only one purpose, be a splash screen for our app
 public class MainActivity extends Activity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
 
-    public void read(View v) {
-        Intent read_intent = new Intent(MainActivity.this, ReadData.class);
-        startActivity(read_intent);
+        int SPLASH_TIME = 1500;
+        new Handler().postDelayed(() -> {
+
+            // run(), executed after 1.5"
+
+            // start my activity
+            Intent intent = new Intent(MainActivity.this, ReadData.class);
+            startActivity(intent);
+
+            finish();
+        }, SPLASH_TIME);
     }
 }

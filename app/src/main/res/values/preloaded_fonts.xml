@@ -4,6 +4,7 @@
         <item>@font/</item>
         <item>@font/autour_one</item>
         <item>@font/roboto_black</item>
+        <item>@font/roboto_slab</item>
         <item>@font/roboto_thin</item>
     </array>
 </resources>

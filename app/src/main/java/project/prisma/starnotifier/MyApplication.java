@@ -13,18 +13,18 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
-public class MyApplication extends Application{
-    private RequestQueue mRequestQueue;
+public class MyApplication extends Application {
     private static MyApplication mInstance;
+    private RequestQueue mRequestQueue;
+
+    public static synchronized MyApplication getInstance() {
+        return mInstance;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
         mInstance = this;
-    }
-
-    public static synchronized MyApplication getInstance() {
-        return mInstance;
     }
 
     public RequestQueue getReqQueue() {

@@ -40,6 +40,11 @@ import java.util.HashMap;
 
 public class ReadData extends Activity {
 
+    // JSON Node names
+    public static final String ITEM_ID = "id";
+    public static final String ITEM_STATION = "station";
+    public static final String ITEM_TIMESTAMP = "timestamp";
+    // our php file to query the db
     String url = "http://testmyapp.altervista.org/read.php";
     ArrayList<HashMap<String, String>> Item_List;
     ProgressDialog PD;
@@ -48,17 +53,9 @@ public class ReadData extends Activity {
     ArrayList<HashMap<String, Integer>> Initial_Item_Num;
     TextView newEvent;
     ImageButton updateButton;
-    String infoTextView = "new events";
-
-    // JSON Node names
-    public static final String ITEM_ID = "id";
-    public static final String ITEM_STATION = "station";
-    public static final String ITEM_TIMESTAMP = "timestamp";
-
-    private long actualTimestamp = System.currentTimeMillis()/1000;
+    private long actualTimestamp = System.currentTimeMillis() / 1000;
     private long lastTimestamp;
     private boolean check4NewEvent = false;
-
     // NOTIFICATION
     private NotificationManager notifManager;
 
@@ -79,48 +76,18 @@ public class ReadData extends Activity {
         ReadDataFromDB();
 
         // maybe we have another row? // this is java 8
-        if (lastTimestamp > actualTimestamp) check4NewEvent = true;
-        else check4NewEvent = false;
+        check4NewEvent = lastTimestamp > actualTimestamp;
 
         // check if events counted and saved in ROM DB are >=< versus remote DB
         updateButton.setOnClickListener(v -> {
-            if(check4NewEvent)
+            if (check4NewEvent)
                 createNotification("new event" + " ACTUAL: " + actualTimestamp + " LAST:" + lastTimestamp);
             else
                 createNotification("UPDATED" + " ACTUAL: " + actualTimestamp + " LAST:" + lastTimestamp);
-            });
+        });
     }
 
-    // ITA // Recupero il numero di righe appena avvio l'app
-    protected int counter() {
-        int initial_rows_numb = 0;
-        JsonObjectRequest jreq = new JsonObjectRequest(Method.GET, url, response -> {
-            try {
-                int success = response.getInt("success");
-                if (success == 1) {
-                    JSONArray ja = response.getJSONArray("my_testmyapp");
-                    HashMap<String, Integer> item = new HashMap<>();
-
-                    item.put("ROWS_NUMBER", ja.length());
-                    Initial_Item_Num.add(item);
-                } // if ends
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-        }, error -> newEvent.setText("error - cant retrieve data"));
-
-        // Adding request to request queue
-        MyApplication.getInstance().addToReqQueue(jreq);
-
-        for(int k = 0; k < Initial_Item_Num.size(); k ++)
-            initial_rows_numb = Initial_Item_Num.get(k).get("ROWS_NUMBER");
-
-        return initial_rows_numb;
-    }
-
-    private void ReadDataFromDB()  {
+    private void ReadDataFromDB() {
         PD = new ProgressDialog(this);
         PD.setMessage("Loading.....");
         PD.show();
@@ -172,24 +139,6 @@ public class ReadData extends Activity {
 
     }
 
-    //On List Item Click move to Details Activity
-    class ListitemClickListener implements ListView.OnItemClickListener {
-
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position,
-                                long id) {
-
-            Intent modify_intent = new Intent(ReadData.this,
-                    UpdateDeleteData.class);
-
-            modify_intent.putExtra("item", Item_List.get(position));
-
-            startActivity(modify_intent);
-
-        }
-
-    }
-
     // Check android version and produce a notification with a simple message using
     //  different libs if we're on Oreo device.
     public void createNotification(String aMessage) {
@@ -206,7 +155,7 @@ public class ReadData extends Activity {
 
         if (notifManager == null) {
             notifManager =
-                    (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -256,7 +205,23 @@ public class ReadData extends Activity {
         notifManager.notify(NOTIFY_ID, notification);
     }
 
+    //On List Item Click move to Details Activity
+    class ListitemClickListener implements ListView.OnItemClickListener {
 
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position,
+                                long id) {
+
+            Intent modify_intent = new Intent(ReadData.this,
+                    UpdateDeleteData.class);
+
+            modify_intent.putExtra("item", Item_List.get(position));
+
+            startActivity(modify_intent);
+
+        }
+
+    }
 
 }
 
