@@ -18,6 +18,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.login);
         setContentView(R.layout.activity_main);
 
         int SPLASH_TIME = 1500;
@@ -26,6 +27,8 @@ public class MainActivity extends Activity {
             // run(), executed after 1.5"
 
             // start my activity
+            Intent i = new Intent (MainActivity.this, LoginActivity.class);
+            startActivity(i);
             Intent intent = new Intent(MainActivity.this, ReadData.class);
             startActivity(intent);
 
