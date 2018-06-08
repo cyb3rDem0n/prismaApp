@@ -66,6 +66,8 @@ public class ReadData extends Activity {
     SharedPreferences sharedpreferences;
     public static final String mypreference = "mypref";
     public static final String TimeStamp = "timStampKey";
+    public static final String FirstRun = "firstRun";
+
     // Shared Preferences elements
 
     private long parsedTimestamp;
@@ -86,6 +88,10 @@ public class ReadData extends Activity {
         if (sharedpreferences.contains(TimeStamp)) {
             sharedpreferences.getLong(TimeStamp, 0L);
         }
+        if (sharedpreferences.contains(FirstRun)) {
+            sharedpreferences.getBoolean(FirstRun, false);
+        }
+
         //sharedPreferences INIT END
 
         Item_List = new ArrayList<>();
@@ -98,17 +104,42 @@ public class ReadData extends Activity {
         updateButton.setOnClickListener(v -> {
             ReadDataFromDB();
         });
+
+        //FIRST RUN CHECK
+
+        if (GetFirstRun()) {
+            SaveFirstRun(true);
+            // query remote DB and call @SaveStatus
+            ReadDataFromDB();
+            createNotification("FirstRun - new events downloaded, check the list");
+        } else {
+            check();
+            // new events to download
+            if(newItem){
+                ReadDataFromDB();
+            }else{
+                // content is updated - NOT FIRST RUN CASE
+                Toast.makeText(getApplicationContext(), "Content Updated", Toast.LENGTH_LONG).show();
+                SaveFirstRun(false);
+            }
+        }
     }
 
     // SharedPreferences Methods START
-    public void Save() {
+    public void SaveTimeStamp() {
         ReadDataFromDB();
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putLong(TimeStamp, parsedTimestamp);
         editor.apply();
     }
 
-    public Long Get() {
+    public void SaveFirstRun (Boolean runOrNot) {
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putBoolean(FirstRun, runOrNot);
+        editor.apply();
+    }
+
+    public Long GetTimeStamp() {
         Long savedTs = 0L;
         sharedpreferences = getSharedPreferences(mypreference,
                 Context.MODE_PRIVATE);
@@ -117,6 +148,17 @@ public class ReadData extends Activity {
             savedTs = sharedpreferences.getLong(TimeStamp, 0L);
         }
         return savedTs;
+    }
+
+    public Boolean GetFirstRun() {
+        Boolean runOrNOt = false;
+        sharedpreferences = getSharedPreferences(mypreference,
+                Context.MODE_PRIVATE);
+
+        if (sharedpreferences.contains(FirstRun)) {
+            runOrNOt = sharedpreferences.getBoolean(FirstRun, false);
+        }
+        return runOrNOt;
     }
     // SharedPreferences Methods END
 
@@ -250,7 +292,7 @@ public class ReadData extends Activity {
     public void check() {
 
         PD.show();
-        item_name = String.valueOf(Get());
+        item_name = String.valueOf(GetTimeStamp());
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, url_check,
                 response -> {
