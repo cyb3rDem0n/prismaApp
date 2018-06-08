@@ -87,6 +87,9 @@ public class ReadData extends Activity {
                 Context.MODE_PRIVATE);
         if (sharedpreferences.contains(TimeStamp)) {
             sharedpreferences.getLong(TimeStamp, 0L);
+        }else{
+            ReadDataFromDB();
+            SaveTimeStamp();
         }
         if (sharedpreferences.contains(FirstRun)) {
             sharedpreferences.getBoolean(FirstRun, false);
