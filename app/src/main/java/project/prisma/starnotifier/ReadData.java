@@ -13,9 +13,9 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
-import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
@@ -26,17 +26,20 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.Request.Method;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ReadData extends Activity {
 
@@ -44,25 +47,46 @@ public class ReadData extends Activity {
     public static final String ITEM_ID = "id";
     public static final String ITEM_STATION = "station";
     public static final String ITEM_TIMESTAMP = "timestamp";
-    // our php file to query the db
+    String item_name;
+    // our php files
     String url = "http://testmyapp.altervista.org/read.php";
+    String url_check = "http://testmyapp.altervista.org/check.php";
+    // array to store item for list menu and his structure
     ArrayList<HashMap<String, String>> Item_List;
-    ProgressDialog PD;
-    ListAdapter adapter;
     ListView listview = null;
     ArrayList<HashMap<String, Integer>> Initial_Item_Num;
+    ListAdapter adapter;
+    // loading progress animation
+    ProgressDialog PD;
+    // layout elements
     TextView newEvent;
     ImageButton updateButton;
-    private long actualTimestamp = System.currentTimeMillis() / 1000;
-    private long lastTimestamp;
-    private boolean check4NewEvent = false;
-    // NOTIFICATION
-    private NotificationManager notifManager;
+
+    // Shared Preferences elements
+    SharedPreferences sharedpreferences;
+    public static final String mypreference = "mypref";
+    public static final String TimeStamp = "timStampKey";
+    // Shared Preferences elements
+
+    private long parsedTimestamp;
+    // notification object
+    private NotificationManager notificationManager;
+    // flag for new items
+    boolean newItem = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.read);
+
+
+        //sharedPreferences INIT START
+        sharedpreferences = getSharedPreferences(mypreference,
+                Context.MODE_PRIVATE);
+        if (sharedpreferences.contains(TimeStamp)) {
+            sharedpreferences.getLong(TimeStamp, 0L);
+        }
+        //sharedPreferences INIT END
 
         Item_List = new ArrayList<>();
         Initial_Item_Num = new ArrayList<>();
@@ -71,21 +95,31 @@ public class ReadData extends Activity {
         newEvent = findViewById(R.id.new_event);
         updateButton = findViewById(R.id.update);
 
-
-        // query remote DB
-        ReadDataFromDB();
-
-        // maybe we have another row? // this is java 8
-        check4NewEvent = lastTimestamp > actualTimestamp;
-
-        // check if events counted and saved in ROM DB are >=< versus remote DB
         updateButton.setOnClickListener(v -> {
-            if (check4NewEvent)
-                createNotification("new event" + " ACTUAL: " + actualTimestamp + " LAST:" + lastTimestamp);
-            else
-                createNotification("UPDATED" + " ACTUAL: " + actualTimestamp + " LAST:" + lastTimestamp);
+            ReadDataFromDB();
         });
     }
+
+    // SharedPreferences Methods START
+    public void Save() {
+        ReadDataFromDB();
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putLong(TimeStamp, parsedTimestamp);
+        editor.apply();
+    }
+
+    public Long Get() {
+        Long savedTs = 0L;
+        sharedpreferences = getSharedPreferences(mypreference,
+                Context.MODE_PRIVATE);
+
+        if (sharedpreferences.contains(TimeStamp)) {
+            savedTs = sharedpreferences.getLong(TimeStamp, 0L);
+        }
+        return savedTs;
+    }
+    // SharedPreferences Methods END
+
 
     private void ReadDataFromDB() {
         PD = new ProgressDialog(this);
@@ -107,8 +141,7 @@ public class ReadData extends Activity {
                         item.put(ITEM_ID, jobj.getString(ITEM_ID));
                         item.put(ITEM_STATION, jobj.getString(ITEM_STATION));
 
-                        lastTimestamp = jobj.getLong(ITEM_TIMESTAMP);
-
+                        parsedTimestamp = jobj.getLong(ITEM_TIMESTAMP);
                         Item_List.add(item);
 
                     } // for loop ends
@@ -133,14 +166,12 @@ public class ReadData extends Activity {
             }
 
         }, error -> PD.dismiss());
-
         // Adding request to request queue
         MyApplication.getInstance().addToReqQueue(jreq);
 
     }
 
-    // Check android version and produce a notification with a simple message using
-    //  different libs if we're on Oreo device.
+    // Check android version and produce a notification with a simple message using different libs if we're on Oreo device.
     public void createNotification(String aMessage) {
         final int NOTIFY_ID = 1002;
 
@@ -153,20 +184,20 @@ public class ReadData extends Activity {
         PendingIntent pendingIntent;
         NotificationCompat.Builder builder;
 
-        if (notifManager == null) {
-            notifManager =
+        if (notificationManager == null) {
+            notificationManager =
                     (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel mChannel = notifManager.getNotificationChannel(id);
+            NotificationChannel mChannel = notificationManager.getNotificationChannel(id);
             if (mChannel == null) {
                 mChannel = new NotificationChannel(id, name, importance);
                 mChannel.setDescription(description);
                 mChannel.enableVibration(true);
                 mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
-                notifManager.createNotificationChannel(mChannel);
+                notificationManager.createNotificationChannel(mChannel);
             }
             builder = new NotificationCompat.Builder(this, id);
 
@@ -199,29 +230,54 @@ public class ReadData extends Activity {
                     .setTicker(aMessage)
                     .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400})
                     .setPriority(Notification.PRIORITY_HIGH);
-        } // else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
+        }
         Notification notification = builder.build();
-        notifManager.notify(NOTIFY_ID, notification);
+        notificationManager.notify(NOTIFY_ID, notification);
     }
-
     //On List Item Click move to Details Activity
     class ListitemClickListener implements ListView.OnItemClickListener {
-
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position,
-                                long id) {
-
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Intent modify_intent = new Intent(ReadData.this,
-                    UpdateDeleteData.class);
-
+                    EventDetails.class);
             modify_intent.putExtra("item", Item_List.get(position));
-
             startActivity(modify_intent);
 
         }
 
     }
+
+    public void check() {
+
+        PD.show();
+        item_name = String.valueOf(Get());
+
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url_check,
+                response -> {
+                    newItem = true;
+                    PD.dismiss();
+                    Toast.makeText(getApplicationContext(),
+                            "Data Inserted Successfully",
+                            Toast.LENGTH_SHORT).show();
+
+                }, error -> {
+                    newItem = false;
+                    PD.dismiss();
+                    Toast.makeText(getApplicationContext(),
+                            "failed to insert", Toast.LENGTH_SHORT).show();
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("item_name", item_name);
+                return params;
+            }
+        };
+
+        // Adding request to request queue
+        MyApplication.getInstance().addToReqQueue(postRequest);
+    }
+
 
 }
 

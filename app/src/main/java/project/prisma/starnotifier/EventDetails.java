@@ -10,7 +10,7 @@ package project.prisma.starnotifier;
 import android.app.Activity;
 import android.os.Bundle;
 
-public class UpdateDeleteData extends Activity {
+public class EventDetails extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

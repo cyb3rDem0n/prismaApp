@@ -21,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UpdateDeleteData" />
+        <activity android:name=".EventDetails" />
         <activity android:name=".ReadData" />
 
         <meta-data
