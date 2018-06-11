@@ -76,6 +76,9 @@ public class ReadData extends Activity {
     // flag for new items
     boolean newItem = false;
 
+    /* TO DO: cambia il metodo setTimestamp e aggiusta il parseTimestamp
+      * rifai l algolritmo di firstRun  */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,7 +92,7 @@ public class ReadData extends Activity {
             sharedpreferences.getLong(TimeStamp, 0L);
         }else{
             ReadDataFromDB();
-            SaveTimeStamp();
+            setTimeStamp();
         }
         if (sharedpreferences.contains(FirstRun)) {
             sharedpreferences.getBoolean(FirstRun, false);
@@ -109,40 +112,35 @@ public class ReadData extends Activity {
         });
 
         //FIRST RUN CHECK
-
-        if (GetFirstRun()) {
-            SaveFirstRun(true);
-            // query remote DB and call @SaveStatus
+        if (isFirstRun()) {
+            // now is not the first run
+            setFirstRun(false);
+            // read the db data and fill the ui
             ReadDataFromDB();
-            createNotification("FirstRun - new events downloaded, check the list");
+            // toast, maybe we are angry
+            Toast.makeText(getApplicationContext(), "updated", Toast.LENGTH_SHORT);
         } else {
+            //inside the n runs
             check();
-            // new events to download
+            // IT SUCKS, REWRITE ALL THE ALGORITHM
             if(newItem){
                 ReadDataFromDB();
             }else{
                 // content is updated - NOT FIRST RUN CASE
                 Toast.makeText(getApplicationContext(), "Content Updated", Toast.LENGTH_LONG).show();
-                SaveFirstRun(false);
+                setFirstRun(false);
             }
         }
     }
 
     // SharedPreferences Methods START
-    public void SaveTimeStamp() {
+    public void setTimeStamp() {
         ReadDataFromDB();
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putLong(TimeStamp, parsedTimestamp);
         editor.apply();
     }
-
-    public void SaveFirstRun (Boolean runOrNot) {
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putBoolean(FirstRun, runOrNot);
-        editor.apply();
-    }
-
-    public Long GetTimeStamp() {
+    public Long getTimeStamp() {
         Long savedTs = 0L;
         sharedpreferences = getSharedPreferences(mypreference,
                 Context.MODE_PRIVATE);
@@ -152,8 +150,20 @@ public class ReadData extends Activity {
         }
         return savedTs;
     }
+    public void setFirstRun(Boolean runOrNot) {
+        SharedPreferences.Editor editor = sharedpreferences.edit();
 
-    public Boolean GetFirstRun() {
+        if(runOrNot){
+            editor.putBoolean(FirstRun, true);
+            editor.apply();
+        }
+        else{
+            editor.putBoolean(FirstRun, false);
+            editor.apply();
+        }
+
+    }
+    public Boolean isFirstRun() {
         Boolean runOrNOt = false;
         sharedpreferences = getSharedPreferences(mypreference,
                 Context.MODE_PRIVATE);
@@ -165,6 +175,44 @@ public class ReadData extends Activity {
     }
     // SharedPreferences Methods END
 
+    // retrieve only the last timestamp from db
+    private void parseTimestamp() {
+        PD = new ProgressDialog(this);
+        PD.setMessage("Parsing Timestamp.....");
+        PD.show();
+
+        JsonObjectRequest jreq = new JsonObjectRequest(Method.GET, url, response -> {
+            try {
+                int success = response.getInt("success");
+
+                if (success == 1) { // well done
+                    JSONArray ja = response.getJSONArray("my_testmyapp");
+
+                    //for (int i = 0; i < ja.length(); i++) {
+                        JSONObject jobj = ja.getJSONObject(ja.length() -1);
+                        parsedTimestamp = jobj.getLong(ITEM_TIMESTAMP);
+
+                        // check if the saved timestamp in our sharedPreference is up to date.
+                        if(getTimeStamp() >= parsedTimestamp)
+
+
+
+
+                        Toast.makeText(getApplicationContext(), "last timestamp: "+ parsedTimestamp, Toast.LENGTH_LONG);
+                    //} // for loop ends
+
+                    PD.dismiss();
+
+                } // if ends
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }, error -> PD.dismiss());
+        // Adding request to request queue
+        MyApplication.getInstance().addToReqQueue(jreq);
+    }
 
     private void ReadDataFromDB() {
         PD = new ProgressDialog(this);
@@ -185,8 +233,6 @@ public class ReadData extends Activity {
                         HashMap<String, String> item = new HashMap<>();
                         item.put(ITEM_ID, jobj.getString(ITEM_ID));
                         item.put(ITEM_STATION, jobj.getString(ITEM_STATION));
-
-                        parsedTimestamp = jobj.getLong(ITEM_TIMESTAMP);
                         Item_List.add(item);
 
                     } // for loop ends
@@ -295,7 +341,7 @@ public class ReadData extends Activity {
     public void check() {
 
         PD.show();
-        item_name = String.valueOf(GetTimeStamp());
+        item_name = String.valueOf(getTimeStamp());
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, url_check,
                 response -> {
