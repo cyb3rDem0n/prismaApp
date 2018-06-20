@@ -20,7 +20,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        int SPLASH_TIME = 1500;
+        // how much times we should wait...
+        int splashTime = 1500;
         new Handler().postDelayed(() -> {
 
             // run(), executed after 1.5"
@@ -30,6 +31,6 @@ public class MainActivity extends Activity {
             startActivity(intent);
 
             finish();
-        }, SPLASH_TIME);
+        }, splashTime);
     }
 }

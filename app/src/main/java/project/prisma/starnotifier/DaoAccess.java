@@ -25,9 +25,7 @@ public interface DaoAccess {
 
     @Query("SELECT * FROM UserData WHERE userId = :userId")
     UserData fetchOneUserDatabyUserId(int userId);
-
-    //TODO: select a user from DB to get his ID
-
+    
     @Update
     void updateUserData(UserData userData);
 
