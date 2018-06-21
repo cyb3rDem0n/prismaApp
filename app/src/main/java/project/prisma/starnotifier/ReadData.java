@@ -44,56 +44,45 @@ import java.util.Map;
 
 public class ReadData extends Activity {
 
+    // JSON Node names
     public static final String ITEM_ID = "id";
     public static final String ITEM_STATION = "station";
     public static final String ITEM_TIMESTAMP = "timestamp";
     public static final String mypreference = "mypref";
     public static final String TimeStamp = "timStampKey";
     public static final String FirstRun = "firstRun";
-    private static final String TAG = "CyberDemon Logging";    // JSON Node names
-    String item_name;
+    private static final String TAG = "CyberDemon Logging";
+
     // our php files
     String url = "http://testmyapp.altervista.org/read.php";
-    String url_check = "http://testmyapp.altervista.org/check.php";
+
     // array to store item for list menu and his structure
     ArrayList<HashMap<String, String>> Item_List;
     ListView listview = null;
     ArrayList<HashMap<String, Integer>> Initial_Item_Num;
     ListAdapter adapter;
+
     // loading progress animation
     ProgressDialog PD;
+
     // layout elements
     TextView newEvent;
     ImageButton updateButton;
+
     // Shared Preferences elements
     SharedPreferences sharedpreferences;
-    // flag for new items
-    boolean newItem = false;
-    // Shared Preferences elements
-    private long parsedTimestamp;
+
     // notification object
     private NotificationManager notificationManager;
+
+    boolean status = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.read);
 
-        // check if our sharedPreferences are empty or not
-        //INITIALIZE START
-        sharedpreferences = getSharedPreferences(mypreference,
-                Context.MODE_PRIVATE);
-        if (sharedpreferences.contains(TimeStamp)) {
-            sharedpreferences.getLong(TimeStamp, 0L);
-        } else
-            Log.e(TAG, "empty shared preference");
-
-        if (sharedpreferences.contains(FirstRun)) {
-            sharedpreferences.getBoolean(FirstRun, true);
-        } else
-            Log.e(TAG, "empty shared preference");
-        //INITIALIZE END
-
+        sharedpreferences = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
         Item_List = new ArrayList<>();
         Initial_Item_Num = new ArrayList<>();
 
@@ -102,33 +91,35 @@ public class ReadData extends Activity {
         updateButton = findViewById(R.id.update);
 
         updateButton.setOnClickListener(v -> {
-            ReadDataFromDB();
-          /*  Intent refresh = new Intent(ReadData.this,
-                    ReadData.class);
-            startActivity(refresh);*/
+            Toast.makeText(getApplicationContext(), "Update Button Pressed", Toast.LENGTH_SHORT).show();
         });
 
-        //FIRST RUN CHECK
-        if (isFirstRun()) {
-            // read the db data and fill the ui
+
+        if (!sharedpreferences.contains(TimeStamp)) {
+            Log.i(TAG, "First Run");
+            // update for the first time the ui and local ts
             ReadDataFromDB();
-            // toast, maybe we are angry
-            Toast.makeText(getApplicationContext(), "FIRST RUN", Toast.LENGTH_SHORT);
-        } else {
-            // check the timestamp
-            check();
-            // newItem -> true mean new items
-            if (newItem) {
-                // update UI and save the new timestamp
-                ReadDataFromDB();
-                // get the new timestamp and set it into sharedPreferences
-                updateTimestamp();
-            } else {
-                // content is updated, local saved timestmap is up to date
-                Toast.makeText(getApplicationContext(), "Content Updated", Toast.LENGTH_LONG).show();
-                setFirstRun(false);
-            }
+            //setTimeStamp(returnLatestTs());
+        }else {
+            Log.i(TAG, "Not First Run");
+            // parsedTS > savedTS return true
+                if (downloadAndcheckLastTs(sharedpreferences.getLong(TimeStamp, 0L))) {
+                    Log.i(TAG, "Update Available ");
+                    //update ui ad local saved ts
+                    ReadDataFromDB();
+                    setTimeStamp(returnLatestTs());
+                    // show a notification message
+                }else{
+                    ReadDataFromDB();
+                    Log.i(TAG, "Updated");
+                }
         }
+    }
+
+    public void setTimeStamp(Long newTimestamp) {
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putLong(TimeStamp, newTimestamp);
+        editor.apply();
     }
 
     public Long getTimeStamp() {
@@ -142,24 +133,16 @@ public class ReadData extends Activity {
         return savedTs;
     }
 
-    // SharedPreferences Methods START
-    public void setTimeStamp(Long newTimestamp) {
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putLong(TimeStamp, newTimestamp);
-        editor.apply();
-    }
-
     public void setFirstRun(Boolean runOrNot) {
         SharedPreferences.Editor editor = sharedpreferences.edit();
-
-        if (runOrNot) {
+        if (runOrNot){
             editor.putBoolean(FirstRun, true);
             editor.apply();
-        } else {
+        }
+        else{
             editor.putBoolean(FirstRun, false);
             editor.apply();
         }
-
     }
 
     public Boolean isFirstRun() {
@@ -168,30 +151,28 @@ public class ReadData extends Activity {
                 Context.MODE_PRIVATE);
 
         if (sharedpreferences.contains(FirstRun))
-            if(!sharedpreferences.getBoolean(FirstRun, false))
+            if (!sharedpreferences.getBoolean(FirstRun, false))
                 runOrNOt = false;
             else
                 runOrNOt = true;
 
         return runOrNOt;
     }
-    // SharedPreferences Methods END
 
-    // retrieve only the last timestamp from db and write it into sharedPreferences
-    private void updateTimestamp() {
+    // download the last timestamp from db
+    private Long returnLatestTs() {
         PD = new ProgressDialog(this);
         PD.setMessage("Parsing Timestamp.....");
         PD.show();
+        final Long[] parsedTs = {0L};
 
         JsonObjectRequest jreq = new JsonObjectRequest(Method.GET, url, response -> {
             try {
                 int success = response.getInt("success");
-
                 if (success == 1) { // well done
                     JSONArray ja = response.getJSONArray("my_testmyapp");
                     JSONObject jobj = ja.getJSONObject(ja.length() - 1);
-                    parsedTimestamp = jobj.getLong(ITEM_TIMESTAMP);
-                    setTimeStamp(parsedTimestamp);
+                    parsedTs[0] = jobj.getLong(ITEM_TIMESTAMP);
                     PD.dismiss();
 
                 } // if ends
@@ -203,8 +184,38 @@ public class ReadData extends Activity {
         }, error -> PD.dismiss());
         // Adding request to request queue
         MyApplication.getInstance().addToReqQueue(jreq);
+        Log.i(TAG, "Retured TS: " + parsedTs[0]);
+        return parsedTs[0];
     }
 
+    // retrieve and campare
+    private boolean downloadAndcheckLastTs(Long localSavedTs) {
+        JsonObjectRequest jreq = new JsonObjectRequest(Method.GET, url, response -> {
+            try {
+                int success = response.getInt("success");
+                if (success == 1) {
+                    JSONArray ja = response.getJSONArray("my_testmyapp");
+                    JSONObject jobj = ja.getJSONObject(ja.length() - 1);
+
+                    // x > y = 1 || x  < y = -1 || x = y = 0
+                    status = Long.compare(jobj.getLong(ITEM_TIMESTAMP), localSavedTs) > 0;
+                    Log.i(TAG, "parsed ts: " +jobj.getLong(ITEM_TIMESTAMP) + " memorized ts: " + localSavedTs + " STATUS = " + status);
+                    createNotification("New Event Detected");
+
+                } // if ends
+
+            } catch (JSONException e) {
+                Log.e(TAG, e.getLocalizedMessage());
+            }
+
+        }, error -> PD.dismiss());
+        // Adding request to request queue
+        MyApplication.getInstance().addToReqQueue(jreq);
+
+        return status;
+    }
+
+    // retrieve all the stuf and popolate ui
     private void ReadDataFromDB() {
         PD = new ProgressDialog(this);
         PD.setMessage("Loading.....");
@@ -215,7 +226,11 @@ public class ReadData extends Activity {
                 int success = response.getInt("success");
 
                 if (success == 1) {
+
                     JSONArray ja = response.getJSONArray("my_testmyapp");
+
+                   // JSONObject jobj_ = ja.getJSONObject(ja.length() - 1);
+                   // setTimeStamp(jobj_.getLong(ITEM_TIMESTAMP));
 
                     for (int i = 0; i < ja.length(); i++) {
 
@@ -250,7 +265,6 @@ public class ReadData extends Activity {
         }, error -> PD.dismiss());
         // Adding request to request queue
         MyApplication.getInstance().addToReqQueue(jreq);
-
     }
 
     // Check android version and produce a notification with a simple message using different libs if we're on Oreo device.
@@ -318,35 +332,7 @@ public class ReadData extends Activity {
         notificationManager.notify(NOTIFY_ID, notification);
     }
 
-    // make db request with our saved timestamp,
-    // if response is 1 we have new events
-    public void check() {
-        item_name = String.valueOf(getTimeStamp());
-
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url_check, response -> {
-            newItem = true; // so we have news today
-                    Toast.makeText(getApplicationContext(),
-                            "Data Inserted Successfully",
-                            Toast.LENGTH_SHORT).show();
-
-                }, error -> {
-            newItem = false; // boring day
-            Toast.makeText(getApplicationContext(),
-                    "failed to insert", Toast.LENGTH_SHORT).show();
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("item_name", item_name);
-                return params;
-            }
-        };
-
-        // Adding request to request queue
-        MyApplication.getInstance().addToReqQueue(postRequest);
-    }
-
-    //On List Item Click move to Details Activity
+    // On List Item Click move to Details Activity
     class ListitemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -358,8 +344,4 @@ public class ReadData extends Activity {
         }
 
     }
-
-
 }
-
-
