@@ -1,4 +1,4 @@
-# Welcome to Prisma App Repository
+# Welcome to Prisma App Repository http://localhost:9000/api/project_badges/measure?project=starnotifier&metric=bugs
 
 This mobile application, for now, should only notify a new event, where an EVENT is related to the observation and detection of a passing meteor.
 Each event is new tuple containing some information like eventDate, stationInfo and more...
