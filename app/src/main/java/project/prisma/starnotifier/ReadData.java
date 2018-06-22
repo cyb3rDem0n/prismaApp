@@ -121,46 +121,9 @@ public class ReadData extends Activity {
         editor.putLong(TimeStamp, newTimestamp);
         editor.apply();
     }
-
-    public Long getTimeStamp() {
-        Long savedTs = 0L;
-        sharedpreferences = getSharedPreferences(mypreference,
-                Context.MODE_PRIVATE);
-
-        if (sharedpreferences.contains(TimeStamp)) {
-            savedTs = sharedpreferences.getLong(TimeStamp, 0L);
-        }
-        return savedTs;
-    }
-
-    public void setFirstRun(Boolean runOrNot) {
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        if (runOrNot){
-            editor.putBoolean(FirstRun, true);
-            editor.apply();
-        }
-        else{
-            editor.putBoolean(FirstRun, false);
-            editor.apply();
-        }
-    }
-
-    public Boolean isFirstRun() {
-        Boolean runOrNOt = true;
-        sharedpreferences = getSharedPreferences(mypreference,
-                Context.MODE_PRIVATE);
-
-        if (sharedpreferences.contains(FirstRun))
-            if (!sharedpreferences.getBoolean(FirstRun, false))
-                runOrNOt = false;
-            else
-                runOrNOt = true;
-
-        return runOrNOt;
-    }
-
+    
     // download the last timestamp from db
-    private Long returnLatestTs() {
+    public Long returnLatestTs() {
         PD = new ProgressDialog(this);
         PD.setMessage("Parsing Timestamp.....");
         PD.show();
@@ -189,7 +152,9 @@ public class ReadData extends Activity {
     }
 
     // retrieve and campare
-    private boolean downloadAndcheckLastTs(Long localSavedTs) {
+    protected boolean downloadAndcheckLastTs(Long localSavedTs) {
+        if(Long.compare(localSavedTs, 0L) == 1){
+
         JsonObjectRequest jreq = new JsonObjectRequest(Method.GET, url, response -> {
             try {
                 int success = response.getInt("success");
@@ -213,6 +178,8 @@ public class ReadData extends Activity {
         MyApplication.getInstance().addToReqQueue(jreq);
 
         return status;
+        }else
+            return false;
     }
 
     // retrieve all the stuf and popolate ui
