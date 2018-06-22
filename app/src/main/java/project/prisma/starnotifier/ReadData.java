@@ -121,7 +121,7 @@ public class ReadData extends Activity {
         editor.putLong(TimeStamp, newTimestamp);
         editor.apply();
     }
-    
+
     // download the last timestamp from db
     public Long returnLatestTs() {
         PD = new ProgressDialog(this);
