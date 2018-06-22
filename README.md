@@ -1,4 +1,4 @@
-# StarNotifier  ![ ](https://github.com/dwyl/repo-badges/blob/master/svg/build-passing.svg)
+# StarNotifier  ![](https://github.com/dwyl/repo-badges/blob/master/svg/job%20satisfaction-100%25-brightgreen.svg) ![](https://github.com/dwyl/repo-badges/blob/master/svg/FunTimes-Guaranteed-brightgreen.svg)
 ## Welcome to the jungle
 
 
