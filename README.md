@@ -1,5 +1,5 @@
-# StarNotifier
-## Welcome to the jungle ![ZeroBugs](http://localhost:9000/api/project_badges/measure?project=starnotifier&metric=bugs)
+# StarNotifier  ![ ](https://github.com/dwyl/repo-badges/blob/master/svg/build-passing.svg)
+## Welcome to the jungle
 
 
 This mobile application, for now, should only notify a new event, where an EVENT is related to the observation and detection of a passing meteor.
