@@ -9,7 +9,6 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        renderscriptSupportModeEnabled true
 
     }
     buildTypes {
@@ -18,22 +17,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion '27.0.3'
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    aaptOptions.cruncherEnabled = false
-    aaptOptions.useNewCruncher = false
-
-    lintOptions {
-        abortOnError false
-    }
-
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -42,7 +30,4 @@ dependencies {
     implementation 'com.mcxiaoke.volley:library:1.0.19'
     implementation 'android.arch.persistence.room:runtime:1.1.1'
     annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
-    //noinspection GradleDependency
-    implementation 'com.android.support:appcompat-v7:27.1.0'
-    implementation 'com.android.tools.build:gradle:3.1.3'
 }
