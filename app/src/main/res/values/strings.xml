@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Star Notifier</string>
+      <string name="app_name">Star Notifier</string>
     <string name="appbar_scrolling_view_behavior" />
     <string name="event_details">Event X</string>
     <string name="editText_insert_station">Enter Station Name...</string>

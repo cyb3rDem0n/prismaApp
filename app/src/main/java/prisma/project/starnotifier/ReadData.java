@@ -5,7 +5,7 @@
  *  Last modified 26/06/18 12.00
  */
 
-package project.prisma.starnotifier;
+package prisma.project.starnotifier;
 
 import android.app.Activity;
 import android.app.Notification;
