@@ -45,7 +45,7 @@ android:background="#ffffff"    >
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/skycam"
+            android:src="@drawable/eventscreenshot"
             android:layout_marginVertical="8dp"/>
     </LinearLayout>
 

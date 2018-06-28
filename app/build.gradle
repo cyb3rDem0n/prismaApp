@@ -20,6 +20,13 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
+    aaptOptions
+            {
+                cruncherEnabled = false
+            }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
