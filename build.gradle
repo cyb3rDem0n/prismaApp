@@ -14,6 +14,10 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
+// plugin blocks must appear after buildscript {}
+plugins {
+    id "org.sonarqube" version "2.6.2"
+}
 
 allprojects {
     repositories {
