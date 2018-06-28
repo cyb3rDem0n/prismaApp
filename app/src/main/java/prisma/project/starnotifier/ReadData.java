@@ -38,6 +38,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class ReadData extends Activity {
 
@@ -45,24 +46,24 @@ public class ReadData extends Activity {
     private static final String ITEM_ID = "id";
     private static final String ITEM_STATION = "station";
     private static final String ITEM_TIMESTAMP = "timestamp";
-    private static final String myPreferences = "mypref"; // DO NOT CHANGE THE STRING VALUE, MEMORY POINTER
-    private static final String TimeStamp = "timStampKey";
+    private static final String MY_PREFERENCES = "mypref"; // DO NOT CHANGE THE STRING VALUE, MEMORY POINTER
+    private static final String TIMESTAMP = "timStampKey";
     private static final String TAG = "CyberDemon Log";
-    private static final String messageNoUp = "No New event";
-    private static final String messageNewUp = "New event";
-    private static final String messageFirstRun = "First Run";
+    private static final String MESSAGE_NO_UP = "No New event";
+    private static final String MESSAGE_NEW_UP = "New event";
+    private static final String MESSAGE_FIRST_RUN = "First Run";
     // our php files
     private String url = "http://testmyapp.altervista.org/read.php";
     // array to store item for list menu and his structure
-    private ArrayList<HashMap<String, String>> Item_List;
+    private ArrayList<HashMap<String, String>> itemList;
     private ListView listview = null;
-    public  ArrayList<HashMap<String, Integer>> Initial_Item_Num;
+    protected ArrayList<HashMap<String, Integer>> initialItemMum;
     private ListAdapter adapter;
     // loading progress animation
     private ProgressDialog PD;
     // layout elements
     private TextView newEvent;
-    public ImageButton updateButton;
+    protected ImageButton updateButton;
     // Shared Preferences elements
     private SharedPreferences sharedpreferences;
     private boolean status = false;
@@ -74,17 +75,16 @@ public class ReadData extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.read);
 
-        sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
-        Item_List = new ArrayList<>();
-        Initial_Item_Num = new ArrayList<>();
+        sharedpreferences = getSharedPreferences(MY_PREFERENCES, Context.MODE_PRIVATE);
+        itemList = new ArrayList<>();
+        initialItemMum = new ArrayList<>();
 
         listview = findViewById(R.id.listview_01);
         newEvent = findViewById(R.id.new_event);
         updateButton = findViewById(R.id.update);
 
-        updateButton.setOnClickListener(v -> {
-            Toast.makeText(getApplicationContext(), "Update Button Pressed", Toast.LENGTH_SHORT).show();
-        });
+        updateButton.setOnClickListener(v ->
+                Toast.makeText(getApplicationContext(), "Update Button Pressed", Toast.LENGTH_SHORT).show());
 
         /*
         Every time the app start, this activity check if a new event is persisted on
@@ -93,20 +93,20 @@ public class ReadData extends Activity {
         just verify if we need to perform an update just comparing the memorized timestamp
         with the last present in the DB.
         */
-        if (!sharedpreferences.contains(TimeStamp)) {
+        if (!sharedpreferences.contains(TIMESTAMP)) {
             Log.i(TAG, "--> First Run");
             // update for the first time the ui and write ts into sharedPreferences
-            ReadDataFromDB(true, messageFirstRun);
+            readDataFromDb(true, MESSAGE_FIRST_RUN);
         } else {
             Log.i(TAG, "--> Not First Run");
             // parsedTS > savedTS return true
-            if (downloadAndCheckLastTs(sharedpreferences.getLong(TimeStamp, 0L))) {
+            if (downloadAndCheckLastTs(sharedpreferences.getLong(TIMESTAMP, 0L))) {
                 Log.i(TAG, "--> NFR, Update Available ");
                 //update ui and write the new ts into sharedPreferences
-                ReadDataFromDB(true, messageNewUp);
+                readDataFromDb(true, MESSAGE_NEW_UP);
             } else {
                 // just refresh ui
-                ReadDataFromDB(false, messageNoUp);
+                readDataFromDb(false, MESSAGE_NO_UP);
                 Log.i(TAG, "--> NFR, Updated");
             }
         }
@@ -126,18 +126,17 @@ public class ReadData extends Activity {
 
                         Log.i(TAG, "--> parsedTS[" + jobj.getLong(ITEM_TIMESTAMP) + "] sharedPreferencesTS[" + localSavedTs + "]");
 
-                        // x > y = 1 || x  < y = -1 || x = y = 0
                         status = Long.compare(jobj.getLong(ITEM_TIMESTAMP), localSavedTs) > 0;
                         Log.i(TAG, "--> UpdateAvailable[" + status + "]");
 
                         // double check before make an update on sharedPreferences
                         if (status || localSavedTs - jobj.getLong(ITEM_TIMESTAMP) < 0) {
                             SharedPreferences.Editor editor = sharedpreferences.edit();
-                            editor.putLong(TimeStamp, jobj.getLong(ITEM_TIMESTAMP));
+                            editor.putLong(TIMESTAMP, jobj.getLong(ITEM_TIMESTAMP));
                             editor.apply();
-                            createNotification(messageNewUp);
+                            createNotification(MESSAGE_NEW_UP);
                         } else {
-                            newEvent.setText(messageNoUp);
+                            newEvent.setText(MESSAGE_NO_UP);
                         }
                     } // if ends
 
@@ -157,7 +156,7 @@ public class ReadData extends Activity {
     }
 
     // retrieve all the stuff and populate ui
-    private void ReadDataFromDB(boolean writeTimeStamp, String message) {
+    private void readDataFromDb(boolean writeTimeStamp, String message) {
         PD = new ProgressDialog(this);
         PD.setMessage("Loading.....");
         PD.show();
@@ -172,9 +171,9 @@ public class ReadData extends Activity {
                     JSONArray ja = response.getJSONArray("my_testmyapp");
 
                     if (writeTimeStamp) {
-                        JSONObject jobj_ = ja.getJSONObject(ja.length() - 1);
+                        JSONObject jsonObject = ja.getJSONObject(ja.length() - 1);
                         SharedPreferences.Editor editor = sharedpreferences.edit();
-                        editor.putLong(TimeStamp, jobj_.getLong(ITEM_TIMESTAMP));
+                        editor.putLong(TIMESTAMP, jsonObject.getLong(ITEM_TIMESTAMP));
                         editor.apply();
                     } else
                         newEvent.setText(message);
@@ -188,7 +187,7 @@ public class ReadData extends Activity {
                         HashMap<String, String> item = new HashMap<>();
                         item.put(ITEM_ID, jobj.getString(ITEM_ID));
                         item.put(ITEM_STATION, jobj.getString(ITEM_STATION));
-                        Item_List.add(item);
+                        itemList.add(item);
 
                     } // for loop ends
 
@@ -196,7 +195,7 @@ public class ReadData extends Activity {
                     int[] to = {R.id.item_id, R.id.item_station};
 
                     adapter = new SimpleAdapter(
-                            getApplicationContext(), Item_List,
+                            getApplicationContext(), itemList,
                             R.layout.list_items, from, to);
 
                     listview.setAdapter(adapter);
@@ -237,10 +236,8 @@ public class ReadData extends Activity {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel mChannel = null;
-            if (notificationManager != null) {
-                mChannel = notificationManager.getNotificationChannel(id);
-            }
+            NotificationChannel mChannel = Objects.requireNonNull(notificationManager).getNotificationChannel(id);
+
             if (mChannel == null) {
                 mChannel = new NotificationChannel(id, name, importance);
                 mChannel.setDescription(description);
@@ -288,10 +285,10 @@ public class ReadData extends Activity {
     class ListitemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Intent modify_intent = new Intent(ReadData.this,
+            Intent modifyIntent = new Intent(ReadData.this,
                     EventDetails.class);
-            modify_intent.putExtra("item", Item_List.get(position));
-            startActivity(modify_intent);
+            modifyIntent.putExtra("item", itemList.get(position));
+            startActivity(modifyIntent);
 
         }
 

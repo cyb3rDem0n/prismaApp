@@ -35,11 +35,6 @@ public class MyApplication extends Application {
         return mRequestQueue;
     }
 
-    public <T> void addToReqQueue(Request<T> req, String tag) {
-
-        getReqQueue().add(req);
-    }
-
     public <T> void addToReqQueue(Request<T> req) {
 
         getReqQueue().add(req);
