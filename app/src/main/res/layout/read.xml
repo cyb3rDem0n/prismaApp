@@ -8,129 +8,159 @@
     android:background="@color/background_light"
     tools:context="prisma.project.starnotifier.MainActivity">
 
-  <android.support.constraint.ConstraintLayout
-      android:id="@+id/contraint_outside"
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_marginBottom="1dp"
-      android:background="@drawable/appwallpaper"
-      app:layout_constraintBottom_toTopOf="@+id/constraint_inside"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="1.0"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent">
-
-    <ImageButton
-        android:id="@+id/update"
-        style="@android:style/Widget.Material.Light.ImageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@android:color/transparent"
-        android:src="@android:drawable/stat_notify_sync"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.916"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.802" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="265dp"
-        android:layout_height="167dp"
-        android:src="@drawable/meteor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/title"
-        app:layout_constraintVertical_bias="0.475" />
-
-    <TextView
-        android:id="@+id/title"
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swiperefresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/roboto_thin"
-        android:lineSpacingExtra="8sp"
-        android:text="@string/app_name"
-        android:textAlignment="center"
-        android:textAppearance="@android:style/TextAppearance.Material.Display4"
-        android:textColor="@color/background_light"
-        android:textSize="50sp"
-        android:typeface="normal"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="w,1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/new_event"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/contraint_main"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/appwallpaper"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                android:id="@+id/pb"
+                style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"
+                android:layout_width="383dp"
+                android:layout_height="13dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:indeterminate="true"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.487"
+                app:layout_constraintStart_toStartOf="parent">
+
+            </ProgressBar>
+
+            <ImageButton
+                android:id="@+id/update"
+                style="@android:style/Widget.Material.Light.ImageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/transparent"
+                android:src="@android:drawable/ic_menu_info_details"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                app:layout_constraintVertical_bias="0.692" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="265dp"
+                android:layout_height="167dp"
+                android:src="@drawable/meteor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.504"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/title"
+                app:layout_constraintVertical_bias="0.475" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto_thin"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/app_name"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.Material.Display4"
+                android:textColor="@color/background_light"
+                android:textSize="50sp"
+                android:typeface="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="w,1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/new_event"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="1dp"
+                android:fontFamily="@font/roboto_thin"
+                android:text="@string/num_event"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textColor="@android:color/holo_green_light"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.503"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                app:layout_constraintVertical_bias="0.137" />
+        </android.support.constraint.ConstraintLayout>
+
+        <EditText
+            android:id="@+id/item_et_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:hint="@string/editText_insert_station"
+            android:visibility="gone">
+
+            <requestFocus />
+        </EditText>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraint_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="1dp"
-        android:fontFamily="@font/roboto_thin"
-        android:text="@string/num_event"
-        android:textAlignment="center"
-        android:textAppearance="@android:style/TextAppearance.Material.Large"
-        android:textColor="@android:color/holo_green_light"
-        android:textSize="30sp"
+        android:layout_marginTop="8dp"
+        android:background="@color/background_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-  </android.support.constraint.ConstraintLayout>
+        app:layout_constraintTop_toTopOf="parent">
 
-  <EditText
-      android:id="@+id/item_et_id"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_alignParentTop="true"
-      android:layout_centerHorizontal="true"
-      android:hint="@string/editText_insert_station"
-      android:visibility="gone">
+        <ListView
+            android:id="@+id/listview_01"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.84">
 
-    <requestFocus />
-  </EditText>
-
-  <android.support.constraint.ConstraintLayout
-      android:id="@+id/constraint_inside"
-      android:layout_width="match_parent"
-      android:layout_height="250dp"
-      android:background="@color/background_light"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="1.0"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="@+id/contraint_outside"
-      app:layout_constraintVertical_bias="1.0">
-
-    <ListView
-        android:id="@+id/listview_01"
-        android:layout_width="0dp"
-        android:layout_height="260dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.84">
-
-    </ListView>
+        </ListView>
 
 
-  </android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+
 
 
 </android.support.constraint.ConstraintLayout>

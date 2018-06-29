@@ -40,5 +40,4 @@ dependencies {
     // added by cyb3rDem0n
     implementation 'mysql:mysql-connector-java:8.0.11'
     implementation 'com.mcxiaoke.volley:library:1.0.19'
-    androidTestImplementation 'com.google.code.findbugs:annotations:3.0.1'
 }

@@ -12,19 +12,23 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.constraint.ConstraintLayout;
+import android.support.constraint.Constraints;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,7 +45,10 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class ReadData extends Activity {
-
+    SwipeRefreshLayout swipeLayout;
+    // Progress bar
+    private int progressStatus = 0;
+    private Handler handler = new Handler();
     // JSON Node names
     private static final String ITEM_ID = "id";
     private static final String ITEM_STATION = "station";
@@ -52,6 +59,11 @@ public class ReadData extends Activity {
     private static final String MESSAGE_NO_UP = "No New event";
     private static final String MESSAGE_NEW_UP = "New event";
     private static final String MESSAGE_FIRST_RUN = "First Run";
+    private static final String MESSAGE_ERROR = "Error in lamba expr.";
+
+    private ConstraintLayout cList;
+    private ConstraintLayout cMain;
+
     // our php files
     private String url = "http://testmyapp.altervista.org/read.php";
     // array to store item for list menu and his structure
@@ -59,8 +71,6 @@ public class ReadData extends Activity {
     private ListView listview = null;
     protected ArrayList<HashMap<String, Integer>> initialItemMum;
     private ListAdapter adapter;
-    // loading progress animation
-    private ProgressDialog PD;
     // layout elements
     private TextView newEvent;
     protected ImageButton updateButton;
@@ -75,6 +85,12 @@ public class ReadData extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.read);
 
+        cList = findViewById(R.id.constraint_list);
+        cMain = findViewById(R.id.contraint_main);
+
+        cList.setVisibility(View.GONE);
+        cMain.setVisibility(View.VISIBLE);
+
         sharedpreferences = getSharedPreferences(MY_PREFERENCES, Context.MODE_PRIVATE);
         itemList = new ArrayList<>();
         initialItemMum = new ArrayList<>();
@@ -82,10 +98,35 @@ public class ReadData extends Activity {
         listview = findViewById(R.id.listview_01);
         newEvent = findViewById(R.id.new_event);
         updateButton = findViewById(R.id.update);
+        final ProgressBar pb = findViewById(R.id.pb);
+
+        // Getting SwipeContainerLayout
+        swipeLayout = findViewById(R.id.swiperefresh);
+
+        // Adding Listener
+        swipeLayout.setOnRefreshListener(() -> {
+            // Your code here
+            Toast.makeText(getApplicationContext(), "Works!", Toast.LENGTH_LONG).show();
+            // To keep animation for 4 seconds
+            new Handler().postDelayed(new Runnable() {
+                @Override public void run() {
+                    // Stop animation (This will be after 3 seconds)
+                    swipeLayout.setRefreshing(false);
+                }
+            }, 2000); // Delay in millis
+        });
+
+        // Scheme colors for animation
+        swipeLayout.setColorSchemeColors(
+                getResources().getColor(android.R.color.holo_blue_bright),
+                getResources().getColor(android.R.color.holo_green_light),
+                getResources().getColor(android.R.color.holo_orange_light),
+                getResources().getColor(android.R.color.holo_red_light)
+        );
 
         updateButton.setOnClickListener(v ->
-                Toast.makeText(getApplicationContext(), "Update Button Pressed", Toast.LENGTH_SHORT).show());
-
+                goToList());
+                pb.setVisibility(View.VISIBLE);
         /*
         Every time the app start, this activity check if a new event is persisted on
         our db.
@@ -110,6 +151,33 @@ public class ReadData extends Activity {
                 Log.i(TAG, "--> NFR, Updated");
             }
         }
+
+        new Thread(() -> {
+            while(progressStatus < 100){
+                // Update the progress status
+                progressStatus +=1;
+                try{
+                    Thread.sleep(20);
+                }catch(InterruptedException e){
+                    Log.d(TAG, MESSAGE_ERROR, e.getCause());
+                    Thread.currentThread().interrupt();
+                }
+
+                handler.post(() -> {
+                    pb.setProgress(progressStatus);
+                    if(progressStatus == 100){
+                        pb.setVisibility(View.GONE);
+
+                    }
+                });
+            }
+        }).start();
+
+    }
+
+    public void goToList(){
+        cList.setVisibility(View.VISIBLE);
+        cMain.setVisibility(View.GONE);
     }
 
     // retrieve and compare
@@ -144,7 +212,7 @@ public class ReadData extends Activity {
                     Log.e(TAG, e.getLocalizedMessage());
                 }
 
-            }, error -> PD.dismiss());
+            }, error -> Log.i(TAG, MESSAGE_ERROR));
             // Adding request to request queue
             MyApplication.getInstance().addToReqQueue(jreq);
 
@@ -157,10 +225,6 @@ public class ReadData extends Activity {
 
     // retrieve all the stuff and populate ui
     private void readDataFromDb(boolean writeTimeStamp, String message) {
-        PD = new ProgressDialog(this);
-        PD.setMessage("Loading.....");
-        PD.show();
-
         // save our requested info
         JsonObjectRequest jreq = new JsonObjectRequest(Method.GET, url, response -> {
             try {
@@ -180,7 +244,6 @@ public class ReadData extends Activity {
 
                     // iterate the array and for each object we get our json
                     for (int i = 0; i < ja.length(); i++) {
-
                         JSONObject jobj = ja.getJSONObject(i);
 
                         // each json contain attribute, so we get and save them in a map
@@ -202,15 +265,13 @@ public class ReadData extends Activity {
 
                     listview.setOnItemClickListener(new ListitemClickListener());
 
-                    PD.dismiss();
-
                 } // if ends
 
             } catch (JSONException e) {
                 Log.e(TAG, e.getLocalizedMessage());
             }
 
-        }, error -> PD.dismiss());
+        }, error -> Log.i(TAG, MESSAGE_ERROR));
         // Adding request to request queue
         MyApplication.getInstance().addToReqQueue(jreq);
     }
