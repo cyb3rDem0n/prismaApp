@@ -19,7 +19,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
-import android.support.constraint.Constraints;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -108,11 +107,9 @@ public class ReadData extends Activity {
             // Your code here
             Toast.makeText(getApplicationContext(), "Works!", Toast.LENGTH_LONG).show();
             // To keep animation for 4 seconds
-            new Handler().postDelayed(new Runnable() {
-                @Override public void run() {
-                    // Stop animation (This will be after 3 seconds)
-                    swipeLayout.setRefreshing(false);
-                }
+            new Handler().postDelayed(() -> {
+                // Stop animation (This will be after 3 seconds)
+                swipeLayout.setRefreshing(false);
             }, 2000); // Delay in millis
         });
 
@@ -263,7 +260,7 @@ public class ReadData extends Activity {
 
                     listview.setAdapter(adapter);
 
-                    listview.setOnItemClickListener(new ListitemClickListener());
+                    listview.setOnItemClickListener(new listItemClickListener());
 
                 } // if ends
 
@@ -343,15 +340,12 @@ public class ReadData extends Activity {
     }
 
     // On List Item Click move to Details Activity
-    class ListitemClickListener implements ListView.OnItemClickListener {
+    class listItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Intent modifyIntent = new Intent(ReadData.this,
-                    EventDetails.class);
-            modifyIntent.putExtra("item", itemList.get(position));
-            startActivity(modifyIntent);
-
+            Intent intentItemDetails = new Intent(ReadData.this, EventDetails.class);
+            intentItemDetails.putExtra("EVENT", itemList.get(position).get(ITEM_STATION));
+            startActivity(intentItemDetails);
         }
-
     }
 }

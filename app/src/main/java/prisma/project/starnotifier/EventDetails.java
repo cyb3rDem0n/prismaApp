@@ -8,14 +8,29 @@
 package prisma.project.starnotifier;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class EventDetails extends Activity {
+    TextView textViewStation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_datails);
+
+        textViewStation = findViewById(R.id.textView7);
+
+        Intent intent = getIntent();
+
+        // it works
+        String stationIntent = intent.getStringExtra("EVENT");
+        textViewStation.setText(stationIntent);
+        //Toast.makeText(getApplicationContext(),"... " + stationIntent, Toast.LENGTH_SHORT).show();
+
+        }
+
     }
 
-}
