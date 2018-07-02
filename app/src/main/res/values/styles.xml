@@ -1,8 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="@android:style/Theme.Material.NoActionBar.Fullscreen">
-        <item name="android:windowFullscreen">true</item>
+    <style name="StarTheme" parent="@android:style/Theme.Material.Light.NoActionBar.Fullscreen">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

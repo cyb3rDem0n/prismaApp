@@ -19,16 +19,15 @@ public class EventDetails extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_datails);
+        setContentView(R.layout.activity_details);
 
-        textViewStation = findViewById(R.id.textView7);
+        textViewStation = findViewById(R.id.stationName);
 
         Intent intent = getIntent();
 
         // it works
         String stationIntent = intent.getStringExtra("EVENT");
         textViewStation.setText(stationIntent);
-        //Toast.makeText(getApplicationContext(),"... " + stationIntent, Toast.LENGTH_SHORT).show();
 
         }
 

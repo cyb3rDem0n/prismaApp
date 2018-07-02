@@ -117,17 +117,6 @@
                 app:layout_constraintVertical_bias="0.137" />
         </android.support.constraint.ConstraintLayout>
 
-        <EditText
-            android:id="@+id/item_et_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:hint="@string/editText_insert_station"
-            android:visibility="gone">
-
-            <requestFocus />
-        </EditText>
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.constraint.ConstraintLayout
@@ -148,7 +137,6 @@
             android:id="@+id/listview_01"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
