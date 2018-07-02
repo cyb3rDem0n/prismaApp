@@ -11,23 +11,45 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class EventDetails extends Activity {
-    TextView textViewStation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        textViewStation = findViewById(R.id.stationName);
+        TextView textViewStation = findViewById(R.id.textStation);
+        TextView textViewDataObs = findViewById(R.id.textDataObs);
+        TextView textViewEventName = findViewById(R.id.textEventName);
+        TextView textViewLat = findViewById(R.id.textLat);
+        TextView textViewLong = findViewById(R.id.textLong);
+        TextView textViewTimeStamp = findViewById(R.id.textTimeStamp);
+        TextView textViewUrl = findViewById(R.id.textUrl);
 
+        // invoke the intend from ReadData activity to pull our data
         Intent intent = getIntent();
 
-        // it works
-        String stationIntent = intent.getStringExtra("EVENT");
-        textViewStation.setText(stationIntent);
+        String stationName = intent.getStringExtra("STATION");
+        textViewStation.setText("Station Name: " + stationName);
+
+        String dataObs = intent.getStringExtra("DATAOBS");
+        textViewDataObs.setText("Observation Data: " + dataObs);
+
+        String timeStamp = intent.getStringExtra("TIMESTAMP");
+        textViewTimeStamp.setText("Event Timestamp: " + timeStamp);
+
+        String latitude = intent.getStringExtra("LAT");
+        textViewLat.setText("Latitude: " + latitude);
+
+        String longitude = intent.getStringExtra("LONG");
+        textViewLong.setText("Longitude: " + longitude);
+
+        String url = intent.getStringExtra("URL");
+        textViewUrl.setText("Cam Image Url: " + url);
+
+        String eventName = intent.getStringExtra("EVENTNAME");
+        textViewEventName.setText("Event Name: " + eventName);
 
         }
 

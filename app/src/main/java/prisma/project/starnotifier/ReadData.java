@@ -52,6 +52,12 @@ public class ReadData extends Activity {
     private static final String ITEM_ID = "id";
     private static final String ITEM_STATION = "station";
     private static final String ITEM_TIMESTAMP = "timestamp";
+    private static final String ITEM_DATAOBS = "data_obs";
+    private static final String ITEM_LAT = "sitelat";
+    private static final String ITEM_LONG = "sitelong";
+    private static final String ITEM_URL = "URL";
+    private static final String ITEM_EVENT = "event_name";
+
     private static final String MY_PREFERENCES = "mypref"; // DO NOT CHANGE THE STRING VALUE, MEMORY POINTER
     private static final String TIMESTAMP = "timStampKey";
     private static final String TAG = "CyberDemon Log";
@@ -104,7 +110,6 @@ public class ReadData extends Activity {
 
         // Adding Listener
         swipeLayout.setOnRefreshListener(() -> {
-            // Your code here
             Toast.makeText(getApplicationContext(), "Works!", Toast.LENGTH_LONG).show();
             // To keep animation for 4 seconds
             new Handler().postDelayed(() -> {
@@ -113,13 +118,7 @@ public class ReadData extends Activity {
             }, 2000); // Delay in millis
         });
 
-        // Scheme colors for animation
-        swipeLayout.setColorSchemeColors(
-                getResources().getColor(android.R.color.holo_blue_bright),
-                getResources().getColor(android.R.color.holo_green_light),
-                getResources().getColor(android.R.color.holo_orange_light),
-                getResources().getColor(android.R.color.holo_red_light)
-        );
+
 
         updateButton.setOnClickListener(v ->
                 goToList());
@@ -245,8 +244,17 @@ public class ReadData extends Activity {
 
                         // each json contain attribute, so we get and save them in a map
                         HashMap<String, String> item = new HashMap<>();
+
                         item.put(ITEM_ID, jobj.getString(ITEM_ID));
                         item.put(ITEM_STATION, jobj.getString(ITEM_STATION));
+                        item.put(ITEM_DATAOBS, jobj.getString(ITEM_DATAOBS));
+                        item.put(ITEM_LAT, jobj.getString(ITEM_LAT));
+                        item.put(ITEM_LONG, jobj.getString(ITEM_LONG));
+                        item.put(ITEM_EVENT, jobj.getString(ITEM_EVENT));
+                        item.put(ITEM_URL, jobj.getString(ITEM_URL));
+                        item.put(ITEM_TIMESTAMP, jobj.getString(ITEM_TIMESTAMP));
+
+                        // if an item in not inside the list, we cant retrieve with an intent
                         itemList.add(item);
 
                     } // for loop ends
@@ -260,7 +268,7 @@ public class ReadData extends Activity {
 
                     listview.setAdapter(adapter);
 
-                    listview.setOnItemClickListener(new listItemClickListener());
+                    listview.setOnItemClickListener(new ListItemClickListener());
 
                 } // if ends
 
@@ -340,11 +348,19 @@ public class ReadData extends Activity {
     }
 
     // On List Item Click move to Details Activity
-    class listItemClickListener implements ListView.OnItemClickListener {
+    class ListItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Intent intentItemDetails = new Intent(ReadData.this, EventDetails.class);
-            intentItemDetails.putExtra("EVENT", itemList.get(position).get(ITEM_STATION));
+            /** @see EventDetails , we use an intent to pass our information to another activity */
+            intentItemDetails.putExtra("STATION", itemList.get(position).get(ITEM_STATION));
+            intentItemDetails.putExtra("DATAOBS", itemList.get(position).get(ITEM_DATAOBS));
+            intentItemDetails.putExtra("TIMESTAMP", itemList.get(position).get(ITEM_TIMESTAMP));
+            intentItemDetails.putExtra("LAT", itemList.get(position).get(ITEM_LAT));
+            intentItemDetails.putExtra("LONG", itemList.get(position).get(ITEM_LONG));
+            intentItemDetails.putExtra("URL", itemList.get(position).get(ITEM_URL));
+            intentItemDetails.putExtra("EVENTNAME", itemList.get(position).get(ITEM_EVENT));
+
             startActivity(intentItemDetails);
         }
     }
