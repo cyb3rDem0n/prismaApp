@@ -19,12 +19,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -44,7 +46,12 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class ReadData extends Activity {
-    SwipeRefreshLayout swipeLayout;
+
+    private boolean fabExpanded = false;
+    private ConstraintLayout layoutFabList;
+    private ConstraintLayout layoutFabInfo;
+
+    private SwipeRefreshLayout swipeLayout;
     // Progress bar
     private int progressStatus = 0;
     private Handler handler = new Handler();
@@ -108,9 +115,40 @@ public class ReadData extends Activity {
         // Getting SwipeContainerLayout
         swipeLayout = findViewById(R.id.swiperefresh);
 
+        // fab
+        FloatingActionButton fabSettings = this.findViewById(R.id.fabSetting);
+        FloatingActionButton fabInfo = this.findViewById(R.id.fabInfo);
+        FloatingActionButton fabList = this.findViewById(R.id.fabList);
+
+        layoutFabList = this.findViewById(R.id.list);
+        layoutFabInfo = this.findViewById(R.id.info);
+
+        fabList.setOnClickListener(view -> {
+            goToList();
+            pb.setVisibility(View.VISIBLE);
+        });
+
+        fabInfo.setOnClickListener(view -> {
+            Intent infoIntent = new Intent(ReadData.this, InfoActivity.class);
+            startActivity(infoIntent);
+        });
+
+        fabSettings.setOnClickListener(view -> {
+            if (fabExpanded){
+                closeSubMenusFab();
+            } else {
+                openSubMenusFab();
+            }
+        });
+        //Only main FAB is visible in the beginning
+        closeSubMenusFab();
+
         // Adding Listener
         swipeLayout.setOnRefreshListener(() -> {
             Toast.makeText(getApplicationContext(), "Works!", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(ReadData.this, MainActivity.class);
+            startActivity(intent);
+
             // To keep animation for 4 seconds
             new Handler().postDelayed(() -> {
                 // Stop animation (This will be after 3 seconds)
@@ -118,11 +156,6 @@ public class ReadData extends Activity {
             }, 2000); // Delay in millis
         });
 
-
-
-        updateButton.setOnClickListener(v ->
-                goToList());
-                pb.setVisibility(View.VISIBLE);
         /*
         Every time the app start, this activity check if a new event is persisted on
         our db.
@@ -170,6 +203,22 @@ public class ReadData extends Activity {
         }).start();
 
     }
+
+    //closes FAB submenus
+    private void closeSubMenusFab(){
+        layoutFabList.setVisibility(View.INVISIBLE);
+        layoutFabInfo.setVisibility(View.INVISIBLE);
+        fabExpanded = false;
+    }
+
+    //Opens FAB submenus
+    private void openSubMenusFab(){
+        layoutFabList.setVisibility(View.VISIBLE);
+        layoutFabInfo.setVisibility(View.VISIBLE);
+        //Change settings icon to 'X' icon
+        fabExpanded = true;
+    }
+
 
     public void goToList(){
         cList.setVisibility(View.VISIBLE);
@@ -352,7 +401,7 @@ public class ReadData extends Activity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Intent intentItemDetails = new Intent(ReadData.this, EventDetails.class);
-            /** @see EventDetails , we use an intent to pass our information to another activity */
+            /* @see EventDetails , we use an intent to pass our information to another activity */
             intentItemDetails.putExtra("STATION", itemList.get(position).get(ITEM_STATION));
             intentItemDetails.putExtra("DATAOBS", itemList.get(position).get(ITEM_DATAOBS));
             intentItemDetails.putExtra("TIMESTAMP", itemList.get(position).get(ITEM_TIMESTAMP));

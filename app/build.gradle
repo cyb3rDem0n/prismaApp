@@ -40,4 +40,7 @@ dependencies {
     // added by cyb3rDem0n
     implementation 'mysql:mysql-connector-java:8.0.11'
     implementation 'com.mcxiaoke.volley:library:1.0.19'
-    implementation group: 'com.android.support', name: 'appcompat-v7', version: '28.0.0-alpha3'}
+    implementation group: 'com.android.support', name: 'appcompat-v7', version: '28.0.0-alpha3'
+    implementation 'com.android.support:cardview-v7:28.0.0-alpha3'
+
+}

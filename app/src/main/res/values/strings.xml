@@ -11,4 +11,6 @@
     <string name="num_event">3 new events...</string>
     <string name="description_meteor">TODO</string>
     <string name="contnent_skycam_image">skycam image</string>
+    <string name="info">Project Info</string>
+    <string name="fabList">Events List</string>
 </resources>
