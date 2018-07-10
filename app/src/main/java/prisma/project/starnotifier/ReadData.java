@@ -25,8 +25,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -50,6 +48,8 @@ public class ReadData extends Activity {
     private boolean fabExpanded = false;
     private ConstraintLayout layoutFabList;
     private ConstraintLayout layoutFabInfo;
+    private ConstraintLayout fabConstraint;
+
 
     private SwipeRefreshLayout swipeLayout;
     // Progress bar
@@ -85,7 +85,6 @@ public class ReadData extends Activity {
     private ListAdapter adapter;
     // layout elements
     private TextView newEvent;
-    protected ImageButton updateButton;
     // Shared Preferences elements
     private SharedPreferences sharedpreferences;
     private boolean status = false;
@@ -100,6 +99,8 @@ public class ReadData extends Activity {
         cList = findViewById(R.id.constraint_list);
         cMain = findViewById(R.id.contraint_main);
 
+        fabConstraint = findViewById(R.id.fab_constraint);
+
         cList.setVisibility(View.GONE);
         cMain.setVisibility(View.VISIBLE);
 
@@ -109,7 +110,6 @@ public class ReadData extends Activity {
 
         listview = findViewById(R.id.listview_01);
         newEvent = findViewById(R.id.new_event);
-        updateButton = findViewById(R.id.update);
         final ProgressBar pb = findViewById(R.id.pb);
 
         // Getting SwipeContainerLayout
@@ -223,6 +223,7 @@ public class ReadData extends Activity {
     public void goToList(){
         cList.setVisibility(View.VISIBLE);
         cMain.setVisibility(View.GONE);
+        fabConstraint.setVisibility(View.GONE);
     }
 
     // retrieve and compare
