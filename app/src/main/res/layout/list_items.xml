@@ -3,8 +3,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
-    android:background="@color/background_light">
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/item_station"
@@ -15,7 +14,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#000000" />
+        android:textColor="@color/text_color" />
 
     <TextView
         android:id="@+id/item_id"
@@ -23,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/item_station"
         android:layout_below="@+id/item_station"
-        android:textColor="#999999" />
+        android:textColor="@color/text_color" />
 
     <ImageView
         android:id="@+id/imageView1"

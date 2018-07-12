@@ -25,6 +25,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -45,13 +46,7 @@ import java.util.Objects;
 
 public class ReadData extends Activity {
 
-    private boolean fabExpanded = false;
-    private ConstraintLayout layoutFabList;
-    private ConstraintLayout layoutFabInfo;
-    private ConstraintLayout fabConstraint;
-
-
-    private SwipeRefreshLayout swipeLayout;
+    //private SwipeRefreshLayout swipeLayout;
     // Progress bar
     private int progressStatus = 0;
     private Handler handler = new Handler();
@@ -73,8 +68,7 @@ public class ReadData extends Activity {
     private static final String MESSAGE_FIRST_RUN = "First Run";
     private static final String MESSAGE_ERROR = "Error in lamba expr.";
 
-    private ConstraintLayout cList;
-    private ConstraintLayout cMain;
+    private Button buttonEnter;
 
     // our php files
     private String url = "http://testmyapp.altervista.org/read.php";
@@ -96,55 +90,29 @@ public class ReadData extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.read);
 
-        cList = findViewById(R.id.constraint_list);
-        cMain = findViewById(R.id.contraint_main);
-
-        fabConstraint = findViewById(R.id.fab_constraint);
-
-        cList.setVisibility(View.GONE);
-        cMain.setVisibility(View.VISIBLE);
+        buttonEnter = findViewById(R.id.button_access);
 
         sharedpreferences = getSharedPreferences(MY_PREFERENCES, Context.MODE_PRIVATE);
         itemList = new ArrayList<>();
         initialItemMum = new ArrayList<>();
-
         listview = findViewById(R.id.listview_01);
         newEvent = findViewById(R.id.new_event);
+        //pB
         final ProgressBar pb = findViewById(R.id.pb);
 
-        // Getting SwipeContainerLayout
-        swipeLayout = findViewById(R.id.swiperefresh);
-
-        // fab
-        FloatingActionButton fabSettings = this.findViewById(R.id.fabSetting);
-        FloatingActionButton fabInfo = this.findViewById(R.id.fabInfo);
-        FloatingActionButton fabList = this.findViewById(R.id.fabList);
-
-        layoutFabList = this.findViewById(R.id.list);
-        layoutFabInfo = this.findViewById(R.id.info);
-
-        fabList.setOnClickListener(view -> {
-            goToList();
-            pb.setVisibility(View.VISIBLE);
-        });
-
-        fabInfo.setOnClickListener(view -> {
-            Intent infoIntent = new Intent(ReadData.this, InfoActivity.class);
-            startActivity(infoIntent);
-        });
-
-        fabSettings.setOnClickListener(view -> {
-            if (fabExpanded){
-                closeSubMenusFab();
-            } else {
-                openSubMenusFab();
+        buttonEnter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goInside = new Intent(ReadData.this, BottomMenuActivity.class);
+                startActivity(goInside);
             }
         });
-        //Only main FAB is visible in the beginning
-        closeSubMenusFab();
+
+        // Getting SwipeContainerLayout
+        //swipeLayout = findViewById(R.id.swiperefresh);
 
         // Adding Listener
-        swipeLayout.setOnRefreshListener(() -> {
+            /*swipeLayout.setOnRefreshListener(() -> {
             Toast.makeText(getApplicationContext(), "Works!", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(ReadData.this, MainActivity.class);
             startActivity(intent);
@@ -154,7 +122,7 @@ public class ReadData extends Activity {
                 // Stop animation (This will be after 3 seconds)
                 swipeLayout.setRefreshing(false);
             }, 2000); // Delay in millis
-        });
+        });*/
 
         /*
         Every time the app start, this activity check if a new event is persisted on
@@ -181,6 +149,7 @@ public class ReadData extends Activity {
             }
         }
 
+        // pB
         new Thread(() -> {
             while(progressStatus < 100){
                 // Update the progress status
@@ -204,27 +173,7 @@ public class ReadData extends Activity {
 
     }
 
-    //closes FAB submenus
-    private void closeSubMenusFab(){
-        layoutFabList.setVisibility(View.INVISIBLE);
-        layoutFabInfo.setVisibility(View.INVISIBLE);
-        fabExpanded = false;
-    }
 
-    //Opens FAB submenus
-    private void openSubMenusFab(){
-        layoutFabList.setVisibility(View.VISIBLE);
-        layoutFabInfo.setVisibility(View.VISIBLE);
-        //Change settings icon to 'X' icon
-        fabExpanded = true;
-    }
-
-
-    public void goToList(){
-        cList.setVisibility(View.VISIBLE);
-        cMain.setVisibility(View.GONE);
-        fabConstraint.setVisibility(View.GONE);
-    }
 
     // retrieve and compare
     protected boolean downloadAndCheckLastTs(Long localSavedTs) {

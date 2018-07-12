@@ -1,16 +1,33 @@
 <resources>
-      <string name="app_name">Star Notifier</string>
+    <string name="app_name">PRISMA</string>
+    <string name="app_name_intro">PRISMA APP</string>
     <string name="appbar_scrolling_view_behavior" />
     <string name="event_details">Event X</string>
-    <string name="editText_insert_station">Enter Station Name...</string>
+    <string name="editText_insert_station">Enter Station Name…</string>
     <string name="content_description">Logo Prisma Project</string>
     <string name="title">Star Notifier</string>
     <string name="title_inside">Lorem ipsum dolor sit amet</string>
 
     <string name="button_insert">Insert</string>
-    <string name="num_event">3 new events...</string>
+    <string name="num_event">3 new events…</string>
     <string name="description_meteor">TODO</string>
     <string name="contnent_skycam_image">skycam image</string>
     <string name="info">Project Info</string>
     <string name="fabList">Events List</string>
+    <string name="list_title">Events List</string>
+
+    <string name="small_title0">progetto</string>
+    <string name="small_title1">PRISMA</string>
+    <string name="small_title2">APP</string>
+
+    <string name="description">""</string>
+
+    <string name="menu_info">Info</string>
+    <string name="menu_project">Project</string>
+    <string name="menu_news">News</string>
+    <string name="title_activity_bottom_menu">BottomMenuActivity</string>
+    <string name="title_home">Info</string>
+    <string name="title_dashboard">Project</string>
+    <string name="title_notifications">News</string>
+
 </resources>
