@@ -1,4 +1,4 @@
-package prisma.project.starnotifier;
+package com.cyberdemon.prisma;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

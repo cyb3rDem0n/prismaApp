@@ -1,0 +1,1240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Camere FRIPON e PRISMA</name>
+    <Style id="icon-959-4186F0-normal">
+      <IconStyle>
+	    <color>fff08641</color>
+        <scale>1.1</scale>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-959-4186F0-highlight">
+      <IconStyle>
+        <color>fff08641</color>
+        <scale>1.1</scale>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1.1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-959-4186F0">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-959-4186F0-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-959-4186F0-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Placemark>
+      <name>Biguglia</name>
+      <description>camera FRIPON</description>
+      <styleUrl>#icon-959-4186F0</styleUrl>
+      <Point>
+        <coordinates>
+          9.445044,42.619889,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Porto Vecchio</name>
+      <description>camera FRIPON</description>
+      <styleUrl>#icon-959-4186F0</styleUrl>
+      <Point>
+        <coordinates>
+          9.278311,41.591369,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Le Versoud</name>
+      <description>camera FRIPON</description>
+      <styleUrl>#icon-959-4186F0</styleUrl>
+      <Point>
+        <coordinates>
+          5.86065,45.218107,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Barcelonnette</name>
+      <description>camera FRIPON</description>
+      <styleUrl>#icon-959-4186F0</styleUrl>
+      <Point>
+        <coordinates>
+          6.650463,44.3863,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Caussols (OCA)</name>
+      <description>camera FRIPON</description>
+      <styleUrl>#icon-959-4186F0</styleUrl>
+      <Point>
+        <coordinates>
+          6.91945,43.75004,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Observatoire de Haute Provence</name>
+      <description>camera FRIPON</description>
+      <styleUrl>#icon-959-4186F0</styleUrl>
+      <Point>
+        <coordinates>
+          5.71362,43.930415,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Hyères</name>
+      <description>camera FRIPON</description>
+      <styleUrl>#icon-959-4186F0</styleUrl>
+      <Point>
+        <coordinates>
+          6.128639,43.120541,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Marsiglia</name>
+      <description>camera FRIPON</description>
+      <styleUrl>#icon-959-4186F0</styleUrl>
+      <Point>
+        <coordinates>
+          5.36978,43.296482,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Aix-en-Provence</name>
+      <description>camera FRIPON</description>
+      <styleUrl>#icon-959-4186F0</styleUrl>
+      <Point>
+        <coordinates>
+          5.447427,43.529742,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Salon-de-Provence</name>
+      <description>camera FRIPON</description>
+      <styleUrl>#icon-959-4186F0</styleUrl>
+      <Point>
+        <coordinates>
+          5.097022,43.640199,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Beaumont-lès-Valence</name>
+      <description>camera FRIPON</description>
+      <styleUrl>#icon-959-4186F0</styleUrl>
+      <Point>
+        <coordinates>
+          4.941366,44.860956,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Sutrieu</name>
+      <description>camera FRIPON</description>
+      <styleUrl>#icon-959-4186F0</styleUrl>
+      <Point>
+        <coordinates>
+          5.657283,45.94908,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Lione</name>
+      <description>camera FRIPON</description>
+      <styleUrl>#icon-959-4186F0</styleUrl>
+      <Point>
+        <coordinates>
+          4.835659,45.764043,0
+        </coordinates>
+      </Point>
+    </Placemark>
+	<Style id="icon-959-DB4436-normal">
+      <IconStyle>
+        <color>ff3644db</color>
+        <scale>1.1</scale>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-959-DB4436-highlight">
+      <IconStyle>
+        <color>ff3644db</color>
+        <scale>1.1</scale>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1.1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-959-DB4436">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-959-DB4436-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-959-DB4436-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-959-F8971B-normal">
+      <IconStyle>
+        <color>ff1b97f8</color>
+        <scale>1.1</scale>        
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-959-F8971B-highlight">
+      <IconStyle>
+        <color>ff1b97f8</color>
+        <scale>1.1</scale>       
+      </IconStyle>
+      <LabelStyle>
+        <scale>1.1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-959-F8971B">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-959-F8971B-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-959-F8971B-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-959-FFDD5E-normal">
+      <IconStyle>
+        <color>ff5eddff</color>
+        <scale>1.1</scale>       
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-959-FFDD5E-highlight">
+      <IconStyle>
+        <color>ff5eddff</color>
+        <scale>1.1</scale>        
+      </IconStyle>
+      <LabelStyle>
+        <scale>1.1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-959-FFDD5E">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-959-FFDD5E-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-959-FFDD5E-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Placemark>
+      <name>Pino Torinese (TO)</name>
+      <description><![CDATA[<img src="https://lh6.googleusercontent.com/proxy/1hUHCHqTWxYS2Hy107IUggXeu9HicYs-KG2D-izw76Hkh9nIicrV0jH2UqyEbTfvKUXpYd33kg7TRqHbwoP90IEu9b31e6G8udq6a57WUp76jvMENvWqf4e_-dtAzCmijwm95zUbQ5SxblbSUKXQPBuo4Cua8rd6EtZVm5Wpupfnz8d94LCxgdv7XGXDcJATcJs-eGZLENM1aKAV1jjRzaGMTyoNz6Bge0ADu8AC" height="200" width="auto" /><br><br>descrizione: INAF - Osservatorio Astrofisico di Torino<br><br>Codice stazione: ITPI01<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITPI01.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>INAF - Osservatorio Astrofisico di Torino
+</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITPI01</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITPI01.jpg</value>
+        </Data>
+        <Data name="gx_media_links">
+          <value>https://lh6.googleusercontent.com/proxy/1hUHCHqTWxYS2Hy107IUggXeu9HicYs-KG2D-izw76Hkh9nIicrV0jH2UqyEbTfvKUXpYd33kg7TRqHbwoP90IEu9b31e6G8udq6a57WUp76jvMENvWqf4e_-dtAzCmijwm95zUbQ5SxblbSUKXQPBuo4Cua8rd6EtZVm5Wpupfnz8d94LCxgdv7XGXDcJATcJs-eGZLENM1aKAV1jjRzaGMTyoNz6Bge0ADu8AC</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          7.76494,45.041244,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Lignan (AO)</name>
+      <description><![CDATA[<img src="https://lh6.googleusercontent.com/proxy/pspY_RchwirrwbwvydDbVqOrxs7FVBtGjRKb7cvOill0v5mLVDNxF_8RwgcwI_ynFGbOKARQpecD0ptWjw1BuPRNOl7XRDeyvLy90Pz9ZSriIWu7qksD6SvCXyu3PxLXq4ntiXUGCrUfGG3vxbgOzsKd1o5Sd8rqH3AfeI_JkrifC-l9MqT8Qin0_8HT16pI_j8TRLDm5xCu-XTQ2App61h3gAjUeNnz8-QBhn-t0JI" height="200" width="auto" /><br><br>descrizione: Osservatorio Astronomico della Regione Autonoma Valle d'Aosta <br><br>Codice stazione: ITVA01<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITVA01.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value><![CDATA[Osservatorio Astronomico della Regione Autonoma Valle d'Aosta 
+]]></value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITVA01</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITVA01.jpg</value>
+        </Data>
+        <Data name="gx_media_links">
+          <value>https://lh6.googleusercontent.com/proxy/pspY_RchwirrwbwvydDbVqOrxs7FVBtGjRKb7cvOill0v5mLVDNxF_8RwgcwI_ynFGbOKARQpecD0ptWjw1BuPRNOl7XRDeyvLy90Pz9ZSriIWu7qksD6SvCXyu3PxLXq4ntiXUGCrUfGG3vxbgOzsKd1o5Sd8rqH3AfeI_JkrifC-l9MqT8Qin0_8HT16pI_j8TRLDm5xCu-XTQ2App61h3gAjUeNnz8-QBhn-t0JI</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          7.478333,45.789861,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Rovigo</name>
+      <description><![CDATA[<img src="https://lh6.googleusercontent.com/proxy/D1lpIY127HrSW4iONEL5md6pAbR3hl15Sz2ciXOgXAu6sCb6XbGlyA76PRE1aPexKfkG4tDTfkW3G2KdMyZSc_2GJzoQHCZuuRDChyzfEe85B6wOyxzrOLn6iDGkZXKCIDqg2WEy8023toombodGKMXngN0DgxxGmxOIiJuF139nAi2ty7z5jBydx2-WcNyqWMGKPRBUOzgdurDgjI8AS9iclhPinDL1sl6tQkPLpDE" height="200" width="auto" /><br><br>descrizione: Liceo Scientifico Pietro Paleocapa<br>Codice stazione: ITVE02<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITVE02.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Liceo Scientifico Pietro Paleocapa</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITVE02</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITVE02.jpg</value>
+        </Data>
+        <Data name="gx_media_links">
+          <value>https://lh6.googleusercontent.com/proxy/D1lpIY127HrSW4iONEL5md6pAbR3hl15Sz2ciXOgXAu6sCb6XbGlyA76PRE1aPexKfkG4tDTfkW3G2KdMyZSc_2GJzoQHCZuuRDChyzfEe85B6wOyxzrOLn6iDGkZXKCIDqg2WEy8023toombodGKMXngN0DgxxGmxOIiJuF139nAi2ty7z5jBydx2-WcNyqWMGKPRBUOzgdurDgjI8AS9iclhPinDL1sl6tQkPLpDE</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          11.795057,45.081667,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Navacchio (PI)</name>
+      <description><![CDATA[descrizione: Space Dynamics Services<br>Codice stazione: ITTO02<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITTO02.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Space Dynamics Services</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITTO02</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITTO02.jpg</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          10.487164,43.685605,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Asiago (VI)</name>
+      <description><![CDATA[descrizione: Osservatorio di Asiago<br>Codice stazione: ITVE03<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITVE03.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Osservatorio di Asiago</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITVE03</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITVE03.jpg</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          11.525527,45.866271,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Isnello (PA)</name>
+      <description><![CDATA[descrizione: Parco Astronomico delle Madonie - Gal Hassin<br>Codice stazione: ITSI01<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITSI01.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Parco Astronomico delle Madonie - Gal Hassin</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITSI01</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITSI01.jpg</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          14.02398,37.87738,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Medicina (BO)</name>
+      <description><![CDATA[descrizione: INAF - Istituto di Radioastronomia<br>Codice stazione: ITER03<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITER03.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>INAF - Istituto di Radioastronomia</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITER03</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITER03.jpg</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          11.64627,44.5239,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>San Marcello Pistoiese</name>
+      <description><![CDATA[descrizione: Gruppo Astrofili Montagne Pistoiesi<br>Codice stazione: ITTO01<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITTO01.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Gruppo Astrofili Montagne Pistoiesi</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITTO01</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITTO01.jpg</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          10.8038507,44.0641603,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Genova</name>
+      <description><![CDATA[descrizione: Osservatorio del Righi<br>Codice stazione: ITLI01<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITLI01.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Osservatorio del Righi</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITLI01</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITLI01.jpg</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          8.9359249,44.425521,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Padova</name>
+      <description><![CDATA[<img src="https://lh4.googleusercontent.com/proxy/sgJIDfXP_7HDuOVE4fO3X_MC1Y3VpcjMCE8nxW0jnS3MWk-DJszqne0ZrS-Q53hXa3I8FdHLxjGjJwckPmRZlKoduuH504cSHPhhrHN4NTD_4iBZz2eDtdA09Ka9q9rM0HjiLCmPdM42TnT117F4oGCZC2adjB3hHUcvlEUdpQd2WWMkguZjr7VVULL8VN4i28c6zJiTupLyotYzDe4sG-Q3BqRLN73vLW-WJevigEM" height="200" width="auto" /><br><br>descrizione: INAF - Osservatorio Astronomico di Padova<br>Codice stazione: ITVE01<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITVE01.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>INAF - Osservatorio Astronomico di Padova</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITVE01</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITVE01.jpg</value>
+        </Data>
+        <Data name="gx_media_links">
+          <value>https://lh4.googleusercontent.com/proxy/sgJIDfXP_7HDuOVE4fO3X_MC1Y3VpcjMCE8nxW0jnS3MWk-DJszqne0ZrS-Q53hXa3I8FdHLxjGjJwckPmRZlKoduuH504cSHPhhrHN4NTD_4iBZz2eDtdA09Ka9q9rM0HjiLCmPdM42TnT117F4oGCZC2adjB3hHUcvlEUdpQd2WWMkguZjr7VVULL8VN4i28c6zJiTupLyotYzDe4sG-Q3BqRLN73vLW-WJevigEM</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          11.86858,45.4019,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Bedonia (PR)</name>
+      <description><![CDATA[<img src="https://lh4.googleusercontent.com/proxy/A93zYCAg6IhRfjoYLIn7D4-D89PDojyZnYn3jcV598aTYmVetvVs6bzIQh5UI16cOKFIYcmIxIBKqFCyDjI_hpo5lxoAbPoDwkvwzoYco9GHOurDw2sbqgrpmuIK-l9YVSdvmiJ3F6CAvvusc7jSELcXB0R7LriXlHI9VmP31GDNldXTN--ejrAnmvbjgy3GwhB65we9qFY4h6py3r1-XYxD7VRv6V4ha4sa92CA" height="200" width="auto" /><br><br>descrizione: Planetario di Bedonia - Associazione Googol<br>Codice stazione: ITER04<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITER04.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Planetario di Bedonia - Associazione Googol</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITER04</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITER04.jpg</value>
+        </Data>
+        <Data name="gx_media_links">
+          <value>https://lh4.googleusercontent.com/proxy/A93zYCAg6IhRfjoYLIn7D4-D89PDojyZnYn3jcV598aTYmVetvVs6bzIQh5UI16cOKFIYcmIxIBKqFCyDjI_hpo5lxoAbPoDwkvwzoYco9GHOurDw2sbqgrpmuIK-l9YVSdvmiJ3F6CAvvusc7jSELcXB0R7LriXlHI9VmP31GDNldXTN--ejrAnmvbjgy3GwhB65we9qFY4h6py3r1-XYxD7VRv6V4ha4sa92CA</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          9.6324298,44.5076467,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Piacenza</name>
+      <description><![CDATA[<img src="https://lh4.googleusercontent.com/proxy/hrrwIvDeOXZ841KH2ODgSii13fopUVfOQatvoHLa6m9ljm9dYrsapp9dqk7pHFlJJYZm2BSPTBIsPvBO7Zx4joQ5TSg2_DA60aakZzs5-rge9gdNz4P1u_EVUw4zFYgxqKgEhNFfNgxD26GvugyszJ9v6YbuNlhmJYJNtA6ss7dG2KA2Z0FWE9GlP7dOFroiLdxf_MGI20O62iHXGSeyrg8xpL9WNvofL2LN7NA8PB4" height="200" width="auto" /><br><br>descrizione: Collegio Alberoni<br>Codice stazione: ITER05<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITER05.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Collegio Alberoni</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITER05</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITER05.jpg</value>
+        </Data>
+        <Data name="gx_media_links">
+          <value>https://lh4.googleusercontent.com/proxy/hrrwIvDeOXZ841KH2ODgSii13fopUVfOQatvoHLa6m9ljm9dYrsapp9dqk7pHFlJJYZm2BSPTBIsPvBO7Zx4joQ5TSg2_DA60aakZzs5-rge9gdNz4P1u_EVUw4zFYgxqKgEhNFfNgxD26GvugyszJ9v6YbuNlhmJYJNtA6ss7dG2KA2Z0FWE9GlP7dOFroiLdxf_MGI20O62iHXGSeyrg8xpL9WNvofL2LN7NA8PB4</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          9.72563,45.03585,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Felizzano (AL)</name>
+      <description><![CDATA[<img src="https://lh5.googleusercontent.com/proxy/l9kiOFDur7g2i4hmuo3jPkxtsQ15UtIlOdtThPQI6c-4TmDDQ7STfBlOvp98H38601KLVxNdSggHiR1lQ-n_diEaFSQk6gS6km_-gbfxnqx8WYTtPLCAKgAfHPyuaD98CTZRg1ZaBvZEmtiV55_sfu-Q5_KzRrorv32lw0f5UKcMlCg40P_ZFu2-lm6tkLH-waqe00o1TfZ4qJxGfJg3xeJHAqr1Gc-uZdf5sOOZuB7z" height="200" width="auto" /><br><br>descrizione: Astrobioparco - Oasi di Felizzano<br>Codice stazione: ITPI03<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITPI03.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Astrobioparco - Oasi di Felizzano</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITPI03</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITPI03.jpg</value>
+        </Data>
+        <Data name="gx_media_links">
+          <value>https://lh5.googleusercontent.com/proxy/l9kiOFDur7g2i4hmuo3jPkxtsQ15UtIlOdtThPQI6c-4TmDDQ7STfBlOvp98H38601KLVxNdSggHiR1lQ-n_diEaFSQk6gS6km_-gbfxnqx8WYTtPLCAKgAfHPyuaD98CTZRg1ZaBvZEmtiV55_sfu-Q5_KzRrorv32lw0f5UKcMlCg40P_ZFu2-lm6tkLH-waqe00o1TfZ4qJxGfJg3xeJHAqr1Gc-uZdf5sOOZuB7z</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          8.43727,44.91275,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Castellana Grotte (BA)</name>
+      <description><![CDATA[descrizione: Osservatorio Astronomico Sirio<br>Codice stazione: ITPU01<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITPU01.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Osservatorio Astronomico Sirio</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITPU01</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITPU01.jpg</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          17.14841,40.8759,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Scandiano (RE)</name>
+      <description><![CDATA[descrizione: Osservatorio Astronomico L.Spallanzani - Associazione Scandianese Fisica Astronomica<br>Codice stazione: ITER06<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITER06.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Osservatorio Astronomico L.Spallanzani - Associazione Scandianese Fisica Astronomica</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITER06</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITER06.jpg</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          10.65766,44.59059,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Trieste</name>
+      <description><![CDATA[descrizione: INAF - Osservatorio Astronomico di Trieste<br>Codice stazione: ITFV01<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITFV01.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>INAF - Osservatorio Astronomico di Trieste</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITFV01</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITFV01.jpg</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          13.853385,45.642555,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Loiano (BO)</name>
+      <description><![CDATA[descrizione: INAF - Osservatorio Astronomico di Bologna<br>Codice stazione: ITER01<br>immagine corrente:: camera in corso di installazione]]></description>
+      <styleUrl>#icon-959-F8971B</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>INAF - Osservatorio Astronomico di Bologna</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITER01</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>camera in corso di installazione</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          11.33413,44.2588,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Cuneo</name>
+      <description><![CDATA[descrizione: Liceo Scientifico Peano<br>Codice stazione: ITPI02<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITPI02.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Liceo Scientifico Peano</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITPI02</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITPI02.jpg</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          7.54046,44.38506,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Luserna San Giovanni (TO)</name>
+      <description><![CDATA[descrizione: Osservatorio Valpellice - Associazione Astrofili Urania<br>Codice stazione: ITPI04<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITPI04.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Osservatorio Valpellice - Associazione Astrofili Urania</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITPI04</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITPI04.jpg</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          7.25824,44.8272,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Brembate di Sopra (BG)</name>
+      <description><![CDATA[descrizione: La Torre del Sole<br>Codice stazione: ITLO01<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITLO01.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>La Torre del Sole</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITLO01</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITLO01.jpg</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          9.58249,45.71881,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>INAF - IAPS (RM)</name>
+      <description><![CDATA[descrizione: INAF - Istituto di Astrofisica e Planetologia Spaziale<br>Codice stazione: ITLA01<br>immagine corrente:: camera in corso di installazione]]></description>
+      <styleUrl>#icon-959-F8971B</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>INAF - Istituto di Astrofisica e Planetologia Spaziale</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITLA01</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>camera in corso di installazione</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          12.64638,41.83867,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Sormano (CO)</name>
+      <description><![CDATA[<img src="https://lh5.googleusercontent.com/proxy/hwAaquXn0yaAl3CReXvfjcRp-pNoSrd_-EP0a7rZ8Oobqfo7ACkIKujYcZZKcNdyYP8dRvHh1o_Gj1uxPzaxcVhD-lp1N404Lj13Si4rf0V7R8Vp0ro63emR6hnSWCwwe2XrGTmXOxaTlCdWQOLik1_XN70YrMhI15H8nI6OREM4zfhTK5GJKNIY2TfR40tpK37pNKnnJyfXUa6XwJsOmupu3Lce1L6PkwFkpsjt" height="200" width="auto" /><br><br>descrizione: Osservatorio Astronomico Sormano<br>Codice stazione: ITLO02<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITLO02.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Osservatorio Astronomico Sormano</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITLO02</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITLO02.jpg</value>
+        </Data>
+        <Data name="gx_media_links">
+          <value>https://lh5.googleusercontent.com/proxy/hwAaquXn0yaAl3CReXvfjcRp-pNoSrd_-EP0a7rZ8Oobqfo7ACkIKujYcZZKcNdyYP8dRvHh1o_Gj1uxPzaxcVhD-lp1N404Lj13Si4rf0V7R8Vp0ro63emR6hnSWCwwe2XrGTmXOxaTlCdWQOLik1_XN70YrMhI15H8nI6OREM4zfhTK5GJKNIY2TfR40tpK37pNKnnJyfXUa6XwJsOmupu3Lce1L6PkwFkpsjt</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          9.22917,45.88292,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Gorga (RM)</name>
+      <description><![CDATA[descrizione: Osservatorio Astronomico Gorga<br>Codice stazione: ITLA02<br>immagine corrente:: camera in corso di installazione]]></description>
+      <styleUrl>#icon-959-F8971B</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Osservatorio Astronomico Gorga</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITLA02</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>camera in corso di installazione</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          13.10482,41.65675,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Chianti (FI)</name>
+      <description><![CDATA[descrizione: Osservatorio Polifunzionale del Chianti<br>Codice stazione: <br>immagine corrente:: camera in corso di acquisto]]></description>
+      <styleUrl>#icon-959-FFDD5E</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Osservatorio Polifunzionale del Chianti</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value/>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>camera in corso di acquisto</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          11.24558,43.52357,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Reggio Calabria</name>
+      <description><![CDATA[descrizione: Planetario Pythagoras<br>Codice stazione: ITCL01<br>immagine corrente:: camera in fase di installazione]]></description>
+      <styleUrl>#icon-959-F8971B</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Planetario Pythagoras</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITCL01</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>camera in fase di installazione</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          15.66024,38.11938,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Lecce</name>
+      <description><![CDATA[descrizione: Università del Salento - Dipartimento di Matematica e Fisica<br>Codice stazione: ITPU02<br>immagine corrente:: camera in corso di installazione]]></description>
+      <styleUrl>#icon-959-F8971B</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Università del Salento - Dipartimento di Matematica e Fisica</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITPU02</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>camera in corso di installazione</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          18.11139,40.33605,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Tricase (LE)</name>
+      <description><![CDATA[descrizione: Liceo Scientifico - Classico G.Stampacchia<br>Codice stazione: ITPU03<br>immagine corrente:: camera in corso di installazione]]></description>
+      <styleUrl>#icon-959-F8971B</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Liceo Scientifico - Classico G.Stampacchia</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITPU03</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>camera in corso di installazione</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          18.36593,39.92367,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Cecima (PV)</name>
+      <description><![CDATA[descrizione: Planetario e Osservatorio di Ca' del Monte<br>Codice stazione: ITLO03<br>immagine corrente:: camera in fase di installazione]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value><![CDATA[Planetario e Osservatorio di Ca' del Monte]]></value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITLO03</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>camera in fase di installazione</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          9.0788,44.81448,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Agordo (BL)</name>
+      <description><![CDATA[descrizione: Scuola Mineraria - Associazione Meteoriti Italia<br>Codice stazione: ITVE04<br>immagine corrente:: camera in fase di installazione]]></description>
+      <styleUrl>#icon-959-F8971B</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Scuola Mineraria - Associazione Meteoriti Italia</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITVE04</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>camera in fase di installazione</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          12.03108,46.2844,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Savignano Sul Rubicone (FC)</name>
+      <description><![CDATA[descrizione: IISS Marie Curie - Associazione Astronomica del Rubicone<br>Codice stazione: ITER02<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITER02.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>IISS Marie Curie - Associazione Astronomica del Rubicone</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITER02</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITER02.jpg</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          12.400739,44.093683,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Camerino (MC)</name>
+      <description><![CDATA[descrizione: Università di Camerino<br>Codice stazione: ITMA01<br>immagine corrente:: camera in fase di installazione]]></description>
+      <styleUrl>#icon-959-F8971B</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Università di Camerino</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITMA01</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>camera in fase di installazione</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          13.065996,43.134788,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Alessandria</name>
+      <description><![CDATA[descrizione: Università del Piemonte Orientale<br>Codice stazione: ITPI05<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITPI05.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Università del Piemonte Orientale</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITPI05</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITPI05.jpg</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          8.6181977,44.9238386,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Vercelli</name>
+      <description><![CDATA[descrizione: Università del Piemonte Orientale<br>Codice stazione: <br>immagine corrente:: camera in fase di acquisto]]></description>
+      <styleUrl>#icon-959-FFDD5E</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Università del Piemonte Orientale</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value/>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>camera in fase di acquisto</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          8.424418,45.327603,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Merate</name>
+      <description><![CDATA[descrizione: INAF - Osservatorio Astronomico di Brera - Merate<br>Codice stazione: ITLO04<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITLO04.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>INAF - Osservatorio Astronomico di Brera - Merate</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITLO04</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITLO04.jpg</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          9.428413,45.705892,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Monteromano</name>
+      <description><![CDATA[descrizione: Osservatorio Astronomico di Monteromano - Gruppo Astrofili Antares<br>Codice stazione: ITER07<br>immagine corrente:: stazione in fase di installazione]]></description>
+      <styleUrl>#icon-959-F8971B</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Osservatorio Astronomico di Monteromano - Gruppo Astrofili Antares</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITER07</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>stazione in fase di installazione</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          11.635991,44.138455,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Palermo - Piana dei Colli</name>
+      <description><![CDATA[descrizione: Osservatorio Astronomico Amatoriale (Bobhouse) di Roberto Zagarella <br>Codice stazione: ITSI02<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITSI02.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Osservatorio Astronomico Amatoriale (Bobhouse) di Roberto Zagarella </value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITSI02</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITSI02.jpg</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          13.299109,38.187559,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Capua</name>
+      <description><![CDATA[descrizione: CIRA - Centro Italiano Ricerche Aerospaziali<br>Codice stazione: ITCP02<br>immagine corrente:: camera in fase di installazione]]></description>
+      <styleUrl>#icon-959-F8971B</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>CIRA - Centro Italiano Ricerche Aerospaziali</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITCP02</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>camera in fase di installazione</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          14.17988,41.121312,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Trento</name>
+      <description><![CDATA[descrizione: Università di Trento<br>Codice stazione: <br>immagine corrente:: camera in fase di installazione]]></description>
+      <styleUrl>#icon-959-F8971B</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Università di Trento</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value/>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>camera in fase di installazione</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          11.140738,46.06551,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>PonteValtellina</name>
+      <description><![CDATA[descrizione: O.A. Giuseppe Piazzi<br>Codice stazione: ITLO05<br>immagine corrente:: camera in fase di installazione]]></description>
+      <styleUrl>#icon-959-F8971B</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>O.A. Giuseppe Piazzi</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITLO05</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>camera in fase di installazione</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          9.979722,46.18889,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Caserta</name>
+      <description><![CDATA[descrizione: Liceo Statale "Alessandro Manzoni"<br>Codice stazione: <br>immagine corrente:: in fase di installazione]]></description>
+      <styleUrl>#icon-959-F8971B</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value><![CDATA[Liceo Statale "Alessandro Manzoni"]]></value>
+        </Data>
+        <Data name="Codice stazione">
+          <value/>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>in fase di installazione</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          14.338643,41.078764,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Marana di Crespadoro</name>
+      <description><![CDATA[descrizione: Cieli Perduti - MarSEC<br>Codice stazione: <br>immagine corrente:: camera in fase di acquisto]]></description>
+      <styleUrl>#icon-959-FFDD5E</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Cieli Perduti - MarSEC</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value/>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>camera in fase di acquisto</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          11.209831,45.63781,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Arcetri</name>
+      <description><![CDATA[descrizione: INAF - Osservatorio Astrofisico di Arcetri<br>Codice stazione: ITTO03<br>immagine corrente:: camera in fase di installazione]]></description>
+      <styleUrl>#icon-959-F8971B</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>INAF - Osservatorio Astrofisico di Arcetri</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITTO03</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>camera in fase di installazione</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          11.25441,43.750548,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Montesarchio</name>
+      <description><![CDATA[descrizione: Istituto d’Istruzione Superiore Enrico Fermi<br>Codice stazione: <br>immagine corrente:: camera in fase di acquisto]]></description>
+      <styleUrl>#icon-959-FFDD5E</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Istituto d’Istruzione Superiore Enrico Fermi</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value/>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>camera in fase di acquisto</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          14.645457,41.063718,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Vicenza</name>
+      <description><![CDATA[descrizione: Liceo Scientifico G.B. Quadri<br>Codice stazione: <br>immagine corrente:: camera in fase di acquisto]]></description>
+      <styleUrl>#icon-959-FFDD5E</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Liceo Scientifico G.B. Quadri</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value/>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>camera in fase di acquisto</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          11.534939,45.55838,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Finale Ligure</name>
+      <description><![CDATA[descrizione: Liceo Statale A. Issel<br>Codice stazione: ITLI02<br>immagine corrente:: https://www.fripon.org/IMG/jpg/stations/RT_ITLI02.jpg]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Liceo Statale A. Issel</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITLI02</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>https://www.fripon.org/IMG/jpg/stations/RT_ITLI02.jpg</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          8.3274534,44.1782767,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Castello Comunale Falletti di Barolo</name>
+      <description><![CDATA[descrizione: Barolo<br>Codice stazione: ITPI06<br>immagine corrente:: camera in fase di installazione]]></description>
+      <styleUrl>#icon-959-DB4436</styleUrl>
+      <ExtendedData>
+        <Data name="descrizione">
+          <value>Barolo</value>
+        </Data>
+        <Data name="Codice stazione">
+          <value>ITPI06</value>
+        </Data>
+        <Data name="immagine corrente:">
+          <value>camera in fase di installazione</value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>
+          7.9440214,44.611176,0
+        </coordinates>
+      </Point>
+    </Placemark>
+  </Document>
+</kml>

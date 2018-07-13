@@ -5,7 +5,7 @@
  *  Last modified 01/06/18 15.25
  */
 
-package prisma.project.starnotifier;
+package com.cyberdemon.prisma;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;

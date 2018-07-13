@@ -1,4 +1,4 @@
-package prisma.project.starnotifier;
+package com.cyberdemon.prisma;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,14 +17,17 @@ public class BottomMenuActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                case R.id.navigation_info:
+                    mTextMessage.setText(R.string.title_info);
                     return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                case R.id.navigation_project:
+                    mTextMessage.setText(R.string.title_project);
                     return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                case R.id.navigation_news:
+                    mTextMessage.setText(R.string.title_news);
+                    return true;
+                case R.id.navigation_maps:
+                    mTextMessage.setText(R.string.title_activity_maps);
                     return true;
             }
             return false;
@@ -36,8 +39,8 @@ public class BottomMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_menu);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        mTextMessage = findViewById(R.id.message);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 

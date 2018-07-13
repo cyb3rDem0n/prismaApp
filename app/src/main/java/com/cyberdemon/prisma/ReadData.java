@@ -5,7 +5,7 @@
  *  Last modified 26/06/18 12.00
  */
 
-package prisma.project.starnotifier;
+package com.cyberdemon.prisma;
 
 import android.app.Activity;
 import android.app.Notification;
@@ -18,10 +18,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -31,7 +28,6 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request.Method;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -69,6 +65,8 @@ public class ReadData extends Activity {
     private static final String MESSAGE_ERROR = "Error in lamba expr.";
 
     private Button buttonEnter;
+    private Button buttonSignaling;
+
 
     // our php files
     private String url = "http://testmyapp.altervista.org/read.php";
@@ -91,6 +89,7 @@ public class ReadData extends Activity {
         setContentView(R.layout.read);
 
         buttonEnter = findViewById(R.id.button_access);
+        buttonSignaling = findViewById(R.id.button_signaling);
 
         sharedpreferences = getSharedPreferences(MY_PREFERENCES, Context.MODE_PRIVATE);
         itemList = new ArrayList<>();
@@ -100,12 +99,11 @@ public class ReadData extends Activity {
         //pB
         final ProgressBar pb = findViewById(R.id.pb);
 
-        buttonEnter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent goInside = new Intent(ReadData.this, BottomMenuActivity.class);
-                startActivity(goInside);
-            }
+        buttonSignaling.setOnClickListener(view -> {
+        });
+        buttonEnter.setOnClickListener(view -> {
+            Intent toMaps = new Intent(ReadData.this, MapsActivity.class);
+            startActivity(toMaps);
         });
 
         // Getting SwipeContainerLayout

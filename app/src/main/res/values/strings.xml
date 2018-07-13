@@ -26,8 +26,11 @@
     <string name="menu_project">Project</string>
     <string name="menu_news">News</string>
     <string name="title_activity_bottom_menu">BottomMenuActivity</string>
-    <string name="title_home">Info</string>
-    <string name="title_dashboard">Project</string>
-    <string name="title_notifications">News</string>
+    <string name="title_info">Info</string>
+    <string name="title_project">Project</string>
+    <string name="title_news">News</string>
+    <string name="title_activity_maps">Map</string>
+
+
 
 </resources>

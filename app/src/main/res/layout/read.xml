@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@color/background_light"
-    tools:context="prisma.project.starnotifier.ReadData">
+    tools:context=".ReadData">
 
     <!--<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swiperefresh"

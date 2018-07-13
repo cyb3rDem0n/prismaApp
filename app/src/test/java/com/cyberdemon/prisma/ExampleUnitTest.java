@@ -1,4 +1,4 @@
-package prisma.project.starnotifier;
+package com.cyberdemon.prisma;
 
 import org.junit.Test;
 
