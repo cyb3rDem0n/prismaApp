@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/prismaApp.iml" filepath="$PROJECT_DIR$/prismaApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/starnotifier.iml" filepath="$PROJECT_DIR$/starnotifier.iml" />
     </modules>
   </component>
 </project>

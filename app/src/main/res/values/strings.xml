@@ -30,7 +30,23 @@
     <string name="title_project">Project</string>
     <string name="title_news">News</string>
     <string name="title_activity_maps">Map</string>
-
+    <string name="text_joinUs">Al progetto partecipano ricercatori dell\'Istituto Nazionale di Astrofisica e delle Università, Gruppi Astrofili e Osservatorî Astronomici e Meteorologici regionali e locali. Anche le Scuole sono coinvolte con un programma didattico e con laboratori di astronomia che intendono far partecipare gli studenti e i singoli cittadini alle attività di ricerca del progetto, fianco a fianco con i ricercatori. Questo aspetto del progetto si situa nell\'ambito di PRISMA-Edu, che viene sviluppato grazie anche al sostegno finanziario delle fondazioni bancarie. Sei uno studente, un docente, un appassionato di astronomia o semplicemente un cittadino e vuoi partecipare al progetto? Scrivi a: prisma_po at inaf.it</string>
+    <string name="text_project">Il progetto PRISMA prevede la realizzazione di una rete italiana di camere all-sky per l\'osservazione di meteore brillanti (fireball e bolidi), al fine di determinare le orbite degli oggetti che le provocano e delimitare con un buon grado di approssimazione le aree dell\'eventuale caduta di frammenti per poter recuperare le meteoriti. Il monitoraggio sistematico della copertura nuvolosa e dell\'attività elettrica sarà usato per la validazione di modelli meteorologici. I dati raccolti in maniera sistematica contribuiranno al perfezionamento dei modelli di interazione dei corpi cosmici con l\'atmosfera che a tutt\'oggi presentano ancora molte lacune a causa della mancanza di dati osservativi di qualità.</string>
+    <string name="text_project_office">
+        - Daniele Gardiol - Coordinatore Nazionale
+        \n- Massimiliano Belluso - Rappresentante del Comitato Tecnico
+        \n- Alberto Buzzoni - Rappresentante del Comitato Scientifico
+        \n- Walter Riva - Rappresentante Comitato Didattica e Divulgazione
+        \n- Giovanna M. Stirpe - Rappresentante del Comitato Territoriale
+        \n- Tullia Carriero - Segreteria di progetto
+    </string>
+    <string name="text_commettee">
+        - Mario Di Martino - Senior planetologist
+        \n- Albino Carbognani - Calcolo orbite e trajettorie
+        \n- Paolo Trivero - Calcolo orbite e trajettorie
+        \n- Giovanni Pratesi - Analisi dei campioni meteoritici
+        \n- Umberto Repetti - Ricerca sul territorio
+        \n- Giovanni B. Valsecchi - Senior planetologist</string>
 
 
 </resources>

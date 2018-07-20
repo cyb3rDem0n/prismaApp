@@ -19,6 +19,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,6 +29,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request.Method;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -42,7 +44,7 @@ import java.util.Objects;
 
 public class ReadData extends Activity {
 
-    //private SwipeRefreshLayout swipeLayout;
+    private SwipeRefreshLayout swipeLayout;
     // Progress bar
     private int progressStatus = 0;
     private Handler handler = new Handler();
@@ -107,10 +109,10 @@ public class ReadData extends Activity {
         });
 
         // Getting SwipeContainerLayout
-        //swipeLayout = findViewById(R.id.swiperefresh);
+        swipeLayout = findViewById(R.id.swiperefresh);
 
         // Adding Listener
-            /*swipeLayout.setOnRefreshListener(() -> {
+            swipeLayout.setOnRefreshListener(() -> {
             Toast.makeText(getApplicationContext(), "Works!", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(ReadData.this, MainActivity.class);
             startActivity(intent);
@@ -120,7 +122,7 @@ public class ReadData extends Activity {
                 // Stop animation (This will be after 3 seconds)
                 swipeLayout.setRefreshing(false);
             }, 2000); // Delay in millis
-        });*/
+        });
 
         /*
         Every time the app start, this activity check if a new event is persisted on
